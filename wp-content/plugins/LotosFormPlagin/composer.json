@@ -1,5 +1,11 @@
 {
-    "require": {
-        "phpoffice/phpword": "^0.18.1"
-    }
+  "require": {
+    "phpoffice/phpword": "^0.18.1",
+    "phpmailer/phpmailer": "^6.4"
+  },
+  "autoload": {
+    "files": [
+      "functions.php"
+    ]
+  }
 }

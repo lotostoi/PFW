@@ -2,3 +2,5 @@
 /wp-includes
 /wp-content/plugins/LotosFormPlagin/vendor
 /*.php
+
+http://wordpress/wp-admin/plugins.php

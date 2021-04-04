@@ -1,21 +1,111 @@
 .contract__wrapper {
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
   width: 100%;
   max-width: 1100px !important;
   margin: 0 auto;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
 }
+
 .contract__form {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   padding: 20px;
-  align-items: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .contract__form > label,
-.contract__form > input, 
-.contract__form > button {
-  margin: 0!important;
-  margin-bottom: 20px!important;
-  width: 70%;
+.contract__form > input,
+.contract__form > button,
+.contract__form > textarea {
+  margin: 0 !important;
+  margin-bottom: 20px !important;
+  width: 80%;
+  padding: 0 5px;
 }
+
+.contract__form > button {
+  height: 50px;
+}
+
+.pasport {
+  border: 1px solid gray;
+  border-left: none;
+  border-right: none;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 80%;
+  padding: 10px 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  margin-bottom: 20px !important;
+}
+
+.pasport > .data-taking {
+  margin: 10px 0;
+}
+
+.address {
+  width: 80%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin-bottom: 20px;
+  border-bottom: 2px solid gray;
+  padding: 0 0 10px 0;
+}
+
+.address > p {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+}
+
+.address .theSame {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+.address .theSame > input {
+  margin-left: 20px;
+}
+
+.address > .sity,
+.address > .street,
+.address > .house {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 32%;
+}
+/*# sourceMappingURL=style.css.map */
