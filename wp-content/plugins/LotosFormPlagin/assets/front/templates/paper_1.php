@@ -303,7 +303,6 @@
 
             if (dataId) {
                 document.querySelector(`small[data-id="${dataId}"]`).classList.add('error')
-                console.log(document.querySelector(`div[data-variant-id="${dataId}"]`));
                 document.querySelector(`div[data-variant-id="${dataId}"]`).classList.add('error')
             }
 
