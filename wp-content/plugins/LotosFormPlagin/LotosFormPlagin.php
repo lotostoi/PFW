@@ -64,10 +64,6 @@ class CreateContract
         $agreement->saveAs($agreementName);
         $contract->saveAs($contractName);
 
-
-
-        /*  try { */
-
         $attachments[] = $agreementName;
         $attachments[] = $contractName;
 
@@ -83,7 +79,9 @@ class CreateContract
             die();
         }
 
-        /*  echo json_encode(['result' => true]);
+        /* try { 
+
+          echo json_encode(['result' => true]);
         
 
             $mail = new PHPMailer(true);
@@ -140,6 +138,7 @@ class CreateContract
             [
                 'title' => 'paper_1',
                 'email' => 'taset@mail.ru',
+                'fields' => include_once(plugin_dir_path(__FILE__) . "assets/front/data/fields.php")
             ],
             $atts
         );
@@ -168,6 +167,8 @@ class CreateContract
     {
         wp_enqueue_style('lotosFrontStyle', plugins_url('/assets/front/css/style.css', __FILE__));
         wp_enqueue_script('lotosFrontScript-jq', plugins_url('/assets/front/js/jquery.js', __FILE__));
+        wp_enqueue_script('lotosFrontScript-jq-val', plugins_url('/assets/front/js/jquery.validate.min.js', __FILE__));
+        wp_enqueue_script('lotosFrontScript-jq-maskedinput', plugins_url('/assets/front/js/jquery.maskedinput.min.js', __FILE__));
         wp_enqueue_script('lotosFrontScript', plugins_url('/assets/front/js/main.js', __FILE__));
         wp_localize_script(
             'lotosFrontScript',
