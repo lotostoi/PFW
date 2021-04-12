@@ -9,13 +9,13 @@
 
             <div class="pnf">
                 <div class="field">
-                    <input type="text" title="Минимум 2 символа" class="ls-input" name="lsFamilia" placeholder="Фамилия" required>
+                    <input type="text" data-save title="Минимум 2 символа" class="ls-input" name="lsFamilia" placeholder="Фамилия" required>
                 </div>
                 <div class="field">
-                    <input type="text" title="Минимум 2 символа" class="ls-input" name="lsName" placeholder="Имя" required>
+                    <input type="text" data-save title="Минимум 2 символа" class="ls-input" name="lsName" placeholder="Имя" required>
                 </div>
                 <div class="field">
-                    <input type="text" class="ls-input" name="<?= $title ?>-patronymic" placeholder="Отчество">
+                    <input type="text" data-save class="ls-input" name="<?= $title ?>-patronymic" placeholder="Отчество">
                 </div>
             </div>
 
@@ -25,26 +25,26 @@
                 <div class="ls-row">
                     <div class="field">
                         <label>Дата рождения:</label>
-                        <input type="date" name="lsDataBorn" id="lsDataBorn" title="01.01.2000">
+                        <input type="date" data-save name="lsDataBorn" id="lsDataBorn" title="01.01.2000">
                     </div>
                     <div class="field">
                         <label>Cерия:</label>
-                        <input type="text" name="lsSeria" title="Обязательное поле(0000)" placeholder="0000">
+                        <input type="text" data-save name="lsSeria" title="Обязательное поле(0000)" placeholder="0000">
                     </div>
                     <div class="field">
                         <label>№</label>
-                        <input type="text" name="lsNumber" title="Обязательное поле(000000)" placeholder="000000">
+                        <input type="text" data-save name="lsNumber" title="Обязательное поле(000000)" placeholder="000000">
                     </div>
                 </div>
 
                 <div class="ls-row">
                     <div class="long-field">
                         <label>Hазвание выдавшего органа: </label>
-                        <textarea name="<?= $title ?>-where-take" title="Обязательное поле" required></textarea>
+                        <textarea name="<?= $title ?>-where-take" data-save title="Обязательное поле" required></textarea>
                     </div>
                     <div class="field">
                         <label> Дата выдачи: </label>
-                        <input type="date" id="lsDataTaking" name="lsDataTaking" title="01.01.2000">
+                        <input type="date" data-save id="lsDataTaking" name="lsDataTaking" title="01.01.2000">
                     </div>
                 </div>
             </div>
@@ -54,19 +54,19 @@
             <div class="address firstAddres">
                 <div class="sity">
                     <label>Город: </label>
-                    <input type="text" name="first-sity" required>
+                    <input type="text" data-save name="first-sity" required>
                 </div>
                 <div class="street">
                     <label>Улица: </label>
-                    <input type="text" name="first-street" required>
+                    <input type="text" data-save name="first-street" required>
                 </div>
                 <div class="house">
                     <label>Дом-квартира: </label>
-                    <input type="text" name="first-house" required>
+                    <input type="text" data-save name="first-house" required>
                 </div>
             </div>
             <div class="theSame">
-                <input type="checkbox" name="the-same" id="theSame">
+                <input type="checkbox" data-save name="the-same" id="theSame">
                 <label> Адрес совпадает с адресом регистрации </label>
             </div>
 
@@ -75,15 +75,15 @@
             <div class="address secondAddres">
                 <div class="sity">
                     <label>Город: </label>
-                    <input type="text" name="second-sity" required>
+                    <input type="text" data-save name="second-sity" required>
                 </div>
                 <div class="street">
                     <label>Улица: </label>
-                    <input type="text" name="second-street" required>
+                    <input type="text" data-save name="second-street" required>
                 </div>
                 <div class="house">
                     <label>Дом-квартира: </label>
-                    <input type="text" name="second-house" required>
+                    <input type="text" data-save name="second-house" required>
                 </div>
             </div>
 
@@ -93,15 +93,15 @@
             <div class="address">
                 <div class="sity">
                     <label>Телефон </label>
-                    <input type="text" id="lsPhone" name="lsPhone" title="+7(999) 999-9999" placeholder="+7(___) ___-____">
+                    <input type="text" data-save id="lsPhone" name="lsPhone" title="+7(999) 999-9999" placeholder="+7(___) ___-____">
                 </div>
                 <div class="sity">
                     <label>Доп. телефон </label>
-                    <input type="text" id="lsAddPhone" name="lsAddPhone" title="+7(999) 999-9999" placeholder="+7(___) ___-____">
+                    <input type="text" data-save id="lsAddPhone" name="lsAddPhone" title="+7(999) 999-9999" placeholder="+7(___) ___-____">
                 </div>
                 <div class="sity">
                     <label>e-mail </label>
-                    <input type="email" name="lsEmail" placeholder="mail@mail.ru" title="mail@mail.ru">
+                    <input type="email" data-save name="lsEmail" placeholder="mail@mail.ru" title="mail@mail.ru">
                 </div>
             </div>
 
@@ -125,22 +125,22 @@
                             <div class="inputs">
                                 <div class="local-variant">
                                     <label for="yes_1">Да</label>
-                                    <input type="checkbox" name="yes_<?= $field['number'] ?>" data-id="field_<?= $field['number'] ?>">
+                                    <input type="checkbox" data-save name="yes_<?= $field['number'] ?>" data-id="field_<?= $field['number'] ?>">
                                 </div>
                                 <div class="local-variant">
                                     <label for="no_1">Нет</label>
-                                    <input type="checkbox" name="no_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>" required>
+                                    <input type="checkbox" data-save name="no_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>" required>
                                 </div>
                                 <div class="local-variant">
                                     <label for="think_1">Затрудняюсь ответить</label>
-                                    <input type="checkbox" name="think_<?= $field['number'] ?>" data-id="field_<?= $field['number'] ?>">
+                                    <input type="checkbox" data-save name="think_<?= $field['number'] ?>" data-id="field_<?= $field['number'] ?>">
                                 </div>
                             </div>
                             <small class="error-for-list" data-id="field_<?= $field['number'] ?>">Выберите один вариант</small>
                         </div>
                     <?php else : ?>
                         <div class="ls-period">
-                            <input type="text" name="period" placeholder="Мес.">
+                            <input data-save type="text" name="period" placeholder="Мес.">
                         </div>
                     <?php endif ?>
                 </div>
@@ -291,6 +291,41 @@
         }
     })
 
+    // saving inputs values
+
+    const inputsForSave = [...document.querySelectorAll('[data-save]')]
+
+
+    inputsForSave.forEach(input => {
+
+        const value = localStorage.getItem(`ls-${input.name}`) || null
+
+        if (value && value !== 'notChecked') {
+
+            if (input.type === 'checkbox') {
+                input.checked = true
+            } else {
+                input.value = value
+            }
+
+        }
+    })
+
+    document.querySelector('.contract__form').addEventListener('change', addhendler)
+    document.querySelector('.contract__form').addEventListener('input', addhendler)
+    document.querySelector('.contract__form').addEventListener('blur', addhendler)
+
+    function addhendler(e) {
+        const el = e.target
+        if (el.tagName === "INPUT" && el.hasAttribute('data-save')) {
+            if (el.type === 'checkbox') {
+                localStorage.setItem(`ls-${el.name}`, el.checked ? 'yes' : 'notChecked')
+            } else {
+                localStorage.setItem(`ls-${el.name}`, `${el.value}`)
+            }
+        }
+    }
+
 
 
     // config validat plugin
@@ -299,7 +334,6 @@
         errorPlacement: function(error, element) {
 
             const dataId = element.data("id") || null;
-            
 
             if (dataId) {
                 document.querySelector(`small[data-id="${dataId}"]`).classList.add('error')
