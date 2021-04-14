@@ -85,21 +85,21 @@ input:read-only {
   margin: 50px 0 45px 0;
 }
 
-.pnf > div > .ls-input[type="text"] {
+.pnf > div > .ls-input[type='text'] {
   width: 261px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: #181818;
 }
 
-.pnf > div > .ls-input[type="text"].error {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400;
-          box-shadow: 0px 0px 8px 0px #f91400;
+.pnf > div > .ls-input[type='text'].error {
+  -webkit-box-shadow: 1px 1px 6px #ee3333;
+          box-shadow: 1px 1px 6px #ee3333;
 }
 
-.pnf > div > .ls-input[type="text"].error:focus {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400;
-          box-shadow: 0px 0px 8px 0px #f91400;
+.pnf > div > .ls-input[type='text'].error:focus {
+  -webkit-box-shadow: 1px 1px 6px #ee3333;
+          box-shadow: 1px 1px 6px #ee3333;
 }
 
 .pnf > .field > label.error {
@@ -155,8 +155,8 @@ input:read-only {
 }
 
 .contract__form .passport .ls-row > .field > input.error {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400;
-          box-shadow: 0px 0px 8px 0px #f91400;
+  -webkit-box-shadow: 1px 1px 6px #ee3333;
+          box-shadow: 1px 1px 6px #ee3333;
 }
 
 .contract__form .passport .ls-row > .field > label.error {
@@ -197,8 +197,8 @@ input:read-only {
 }
 
 .contract__form .passport .ls-row > .long-field > textarea.error {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400;
-          box-shadow: 0px 0px 8px 0px #f91400;
+  -webkit-box-shadow: 1px 1px 6px #ee3333;
+          box-shadow: 1px 1px 6px #ee3333;
 }
 
 .contract__form .passport .ls-row > .long-field > label.error {
@@ -219,8 +219,7 @@ input:read-only {
 }
 
 .address > .sity,
-.address > .street,
-.address > .house {
+.address > .street {
   width: 261px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -232,8 +231,7 @@ input:read-only {
 }
 
 .address > .sity > label,
-.address > .street > label,
-.address > .house > label {
+.address > .street > label {
   font: var(--unnamed-font-style-normal) normal normal 16px/19px Roboto;
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
@@ -244,22 +242,71 @@ input:read-only {
 }
 
 .address > .sity > input.error,
-.address > .street > input.error,
-.address > .house > input.error {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400;
-          box-shadow: 0px 0px 8px 0px #f91400;
+.address > .street > input.error {
+  -webkit-box-shadow: 1px 1px 6px #ee3333;
+          box-shadow: 1px 1px 6px #ee3333;
 }
 
 .address > .sity > input.error:focus,
-.address > .street > input.error:focus,
-.address > .house > input.error:focus {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400 !important;
-          box-shadow: 0px 0px 8px 0px #f91400 !important;
+.address > .street > input.error:focus {
+  -webkit-box-shadow: 1px 1px 6px #ee3333 !important;
+          box-shadow: 1px 1px 6px #ee3333 !important;
 }
 
 .address > .sity > label.error,
-.address > .street > label.error,
-.address > .house > label.error {
+.address > .street > label.error {
+  margin-left: 5px;
+  color: red;
+}
+
+.address > .house-flat {
+  width: 261px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+.address > .house-flat > .house,
+.address > .house-flat > .flat {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  width: 45%;
+}
+
+.address > .house-flat > .house > label,
+.address > .house-flat > .flat > label {
+  font: var(--unnamed-font-style-normal) normal normal 16px/19px Roboto;
+  letter-spacing: var(--unnamed-character-spacing-0);
+  text-align: left;
+  letter-spacing: 0px;
+  color: #181818;
+  opacity: 1;
+  margin: 0 0 10px 10px;
+}
+
+.address > .house-flat > .house > input.error,
+.address > .house-flat > .flat > input.error {
+  -webkit-box-shadow: 1px 1px 6px #ee3333;
+          box-shadow: 1px 1px 6px #ee3333;
+}
+
+.address > .house-flat > .house > input.error:focus,
+.address > .house-flat > .flat > input.error:focus {
+  -webkit-box-shadow: 1px 1px 6px #ee3333 !important;
+          box-shadow: 1px 1px 6px #ee3333 !important;
+}
+
+.address > .house-flat > .house > label.error,
+.address > .house-flat > .flat > label.error {
   margin-left: 5px;
   color: red;
 }
@@ -453,8 +500,8 @@ input:read-only {
 }
 
 .list-row > .variants.error {
-  -webkit-box-shadow: 0px 0px 8px 0px #f91400 !important;
-          box-shadow: 0px 0px 8px 0px #f91400 !important;
+  -webkit-box-shadow: 1px 1px 6px #ee3333 !important;
+          box-shadow: 1px 1px 6px #ee3333 !important;
 }
 
 .list-row.dark {

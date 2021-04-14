@@ -60,9 +60,15 @@
                     <label>Улица: </label>
                     <input type="text" data-save name="first-street" required>
                 </div>
-                <div class="house">
-                    <label>Дом-квартира: </label>
-                    <input type="text" data-save name="first-house" required>
+                <div class="house-flat">
+                    <div class="house">
+                        <label>Дом: </label>
+                        <input type="text" data-save name="first-house" required>
+                    </div>
+                    <div class="flat">
+                        <label>Kвартира: </label>
+                        <input type="text" data-save name="first-flat" required>
+                    </div>
                 </div>
             </div>
             <div class="theSame">
@@ -81,9 +87,15 @@
                     <label>Улица: </label>
                     <input type="text" data-save name="second-street" required>
                 </div>
-                <div class="house">
-                    <label>Дом-квартира: </label>
-                    <input type="text" data-save name="second-house" required>
+                <div class="house-flat">
+                    <div class="house">
+                        <label>Дом: </label>
+                        <input type="text" data-save name="second-house" required>
+                    </div>
+                    <div class="flat">
+                        <label>Kвартира: </label>
+                        <input type="text" data-save name="second-flat" required>
+                    </div>
                 </div>
             </div>
 
