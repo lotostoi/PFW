@@ -131,11 +131,11 @@
                 <p class="description">Специалисты ООО «Aurora DentHouse» хотели бы как можно лучше провести Ваше лечение. Его успех в немалой степени зависит от состояния Вашего здоровья. Пожалуйста, ответьте на все вопросы полностью, выбрав ( ДА или НЕТ).</p>
             </div>
             <?php foreach ($fields as $field) : ?>
-                <div class="list-row <?= (int) $field['number'] % 2 ? 'dark' : 'light'  ?>"  data-variant-id="field_<?= $field['number'] ?>">
+                <div class="list-row <?= (int) $field['number'] % 2 ? 'dark' : 'light'  ?>" data-variant-id="field_<?= $field['number'] ?>">
                     <p class="title">
                         <?= $field['type'] !== "not-number" ?  $field['number'] . '. ' . $field['title'] : $field['title'] ?>
                     </p>
-                    <?php if ($field['type'] !== "period") : ?>
+                    <?php if ($field['type'] === "field" || $field['type'] === "not-number") : ?>
                         <div class="variants">
                             <div class="inputs">
                                 <div class="local-variant">
@@ -152,7 +152,7 @@
                                 </div>
                             </div>
                         </div>
-                    <?php else : ?>
+                    <?php elseif ($field['type'] === "period") : ?>
                         <div class="ls-period">
                             <input data-save type="text" name="period" placeholder="Мес.">
                         </div>
@@ -318,13 +318,13 @@
 
     function addHandler(e) {
         const el = e.target
-        if (el.tagName === "INPUT" && el.hasAttribute('data-save')) {
+        if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" && el.hasAttribute('data-save')) {
             if (el.type === 'checkbox') {
                 const inputs = document.querySelectorAll(`input[data-id="${el.dataset.id}"]`)
                 inputs.forEach(input => {
                     if (input.name === el.name) {
                         localStorage.setItem(`ls-${input.name}`, input.checked ? 'yes' : 'notChecked')
-                        input.removeAttribute('required')
+                        el.setAttribute('required', '')
                     } else {
                         localStorage.setItem(`ls-${input.name}`, 'notChecked')
                         input.removeAttribute('required')
@@ -340,9 +340,9 @@
         const value = localStorage.getItem(`ls-${input.name}`) || null
 
         if (value && value !== 'notChecked') {
-          
+
             if (input.type === 'checkbox') {
-      
+
                 const inputs = document.querySelectorAll(`input[data-id="${input.dataset.id}"]`)
                 inputs.forEach(el => {
                     if (input.name === el.name) {
@@ -356,7 +356,7 @@
                     input.dispatchEvent(new Event('change'))
                 }
             } else {
-         
+
                 input.value = value
             }
         }
