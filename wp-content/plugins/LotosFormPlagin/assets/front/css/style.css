@@ -11,9 +11,14 @@ input:read-only {
   display: none;
   text-align: center;
   color: red;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: end;
+      -ms-flex-pack: end;
+          justify-content: flex-end;
+  padding: 0 10px;
+}
+
+.message-bottom.error {
+  color: red;
 }
 
 .error-for-list.error {
@@ -102,8 +107,14 @@ input:read-only {
           box-shadow: 1px 1px 6px #ee3333;
 }
 
+.pnf > .field > label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0 0 10px;
+}
+
 .pnf > .field > label.error {
-  margin-left: 5px;
   color: red;
 }
 
@@ -160,7 +171,10 @@ input:read-only {
 }
 
 .contract__form .passport .ls-row > .field > label.error {
-  margin-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0 0 10px;
   color: red;
 }
 
@@ -202,7 +216,10 @@ input:read-only {
 }
 
 .contract__form .passport .ls-row > .long-field > label.error {
-  margin-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0 0 10px;
   color: red;
 }
 
@@ -218,7 +235,7 @@ input:read-only {
           justify-content: space-between;
 }
 
-.address > .sity,
+.address > .city,
 .address > .street {
   width: 261px;
   display: -webkit-box;
@@ -230,8 +247,8 @@ input:read-only {
           flex-direction: column;
 }
 
-.address > .sity > label,
-.address > .street > label {
+.address > .city > label.title,
+.address > .street > label.title {
   font: var(--unnamed-font-style-normal) normal normal 16px/19px Roboto;
   letter-spacing: var(--unnamed-character-spacing-0);
   text-align: left;
@@ -241,21 +258,32 @@ input:read-only {
   margin: 0 0 10px 10px;
 }
 
-.address > .sity > input.error,
+.address > .city > input.error,
 .address > .street > input.error {
   -webkit-box-shadow: 1px 1px 6px #ee3333;
           box-shadow: 1px 1px 6px #ee3333;
 }
 
-.address > .sity > input.error:focus,
+.address > .city > input.error:focus,
 .address > .street > input.error:focus {
   -webkit-box-shadow: 1px 1px 6px #ee3333 !important;
           box-shadow: 1px 1px 6px #ee3333 !important;
 }
 
-.address > .sity > label.error,
+.address > .city > label,
+.address > .street > label {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0 0 10px;
+}
+
+.address > .city > label.error,
 .address > .street > label.error {
-  margin-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0 0 10px;
   color: red;
 }
 
@@ -307,7 +335,10 @@ input:read-only {
 
 .address > .house-flat > .house > label.error,
 .address > .house-flat > .flat > label.error {
-  margin-left: 5px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 8px 0 0 10px;
   color: red;
 }
 
@@ -510,6 +541,10 @@ input:read-only {
 
 .list-row.light {
   background: #ffffffd8 0% 0% no-repeat padding-box;
+}
+
+.list-row.error {
+  border-bottom: 1px solid #ee3333;
 }
 
 .add-field {

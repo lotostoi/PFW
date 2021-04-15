@@ -9,7 +9,12 @@ input:read-only {
   display: none;
   text-align: center;
   color: red;
-  justify-content: center;
+  justify-content: flex-end;
+  padding: 0 10px;
+}
+
+.message-bottom.error {
+  color: red;
 }
 
 .error-for-list.error {
@@ -69,9 +74,12 @@ input:read-only {
 .pnf > div > .ls-input[type='text'].error:focus {
   box-shadow: $error-shadow;
 }
+.pnf > .field > label {
+  display: flex;
+  margin: 8px 0 0 10px;
+}
 
 .pnf > .field > label.error {
-  margin-left: 5px;
   color: red;
 }
 
@@ -106,7 +114,8 @@ input:read-only {
       box-shadow: $error-shadow;
     }
     & > label.error {
-      margin-left: 5px;
+      display: flex;
+      margin: 8px 0 0 10px;
       color: red;
     }
   }
@@ -136,7 +145,8 @@ input:read-only {
       box-shadow: $error-shadow;
     }
     & > label.error {
-      margin-left: 5px;
+      display: flex;
+      margin: 8px 0 0 10px;
       color: red;
     }
   }
@@ -147,12 +157,12 @@ input:read-only {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  & > .sity,
+  & > .city,
   & > .street {
     width: 261px;
     display: flex;
     flex-direction: column;
-    & > label {
+    & > label.title {
       font: var(--unnamed-font-style-normal) normal normal 16px/19px Roboto;
       letter-spacing: var(--unnamed-character-spacing-0);
       text-align: left;
@@ -167,8 +177,13 @@ input:read-only {
     & > input.error:focus {
       box-shadow: $error-shadow !important;
     }
+    & > label {
+      display: flex;
+      margin: 8px 0 0 10px;
+    }
     & > label.error {
-      margin-left: 5px;
+      display: flex;
+      margin: 8px 0 0 10px;
       color: red;
     }
   }
@@ -198,7 +213,8 @@ input:read-only {
         box-shadow: $error-shadow !important;
       }
       & > label.error {
-        margin-left: 5px;
+        display: flex;
+        margin: 8px 0 0 10px;
         color: red;
       }
     }
@@ -216,7 +232,6 @@ input:read-only {
     font: var(--unnamed-font-style-normal) normal normal 18px/24px var(--unnamed-font-family-segoe-ui);
     letter-spacing: var(--unnamed-character-spacing-0);
     text-align: left;
-
     letter-spacing: 0px;
     color: #181818;
     opacity: 1;
@@ -342,6 +357,9 @@ input:read-only {
   background: #ffffffd8 0% 0% no-repeat padding-box;
 }
 
+.list-row.error {
+  border-bottom: 1px solid #ee3333;
+}
 .add-field {
   display: flex;
   min-height: 52px;
