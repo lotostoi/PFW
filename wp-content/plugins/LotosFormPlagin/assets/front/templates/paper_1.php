@@ -131,7 +131,7 @@
                 <p class="description">Специалисты ООО «Aurora DentHouse» хотели бы как можно лучше провести Ваше лечение. Его успех в немалой степени зависит от состояния Вашего здоровья. Пожалуйста, ответьте на все вопросы полностью, выбрав ( ДА или НЕТ).</p>
             </div>
             <?php foreach ($fields as $field) : ?>
-                <div class="list-row <?= (int) $field['number'] % 2 ? 'dark' : 'light'  ?>" data-variant-id="field_<?= $field['number'] ?>">
+                <div class="list-row <?= $field['type'] === "field" || $field['type'] === "not-number" ? 'light' : ''  ?>" data-variant-id="field_<?= $field['number'] ?>">
                     <p class="title">
                         <?= $field['type'] !== "not-number" ?  $field['number'] . '. ' . $field['title'] : $field['title'] ?>
                     </p>
@@ -165,12 +165,29 @@
                     </div>
                 <?php endif ?>
             <?php endforeach ?>
-
+        </div>
+    </div>
+    <div class="end-form">
+        <div class="end-form__body">
+            <div class="end_message">
+                В заключении дополнительный информационный текст о...
+            </div>
+            <div class="end_message-cheked" data-variant-id="allFieldsIsTrue">
+                <input type="checkbox" name="allFieldsIsTrue" id="allFieldsIsTrue" data-save name="allFieldsIsTrue" class="not-message" data-id="allFieldsIsTrue" required>
+                <label for="allFieldsIsTrue">Все поля заполнены мною верно.</label>
+            </div>
+            <small class="error-for-end" data-id="allFieldsIsTrue">Выберите один вариант</small>
+            <div class="end_message-agreement" data-variant-id="lsAgreement">
+                <input type="checkbox" name="lsAgreement" id="lsAgreement" data-save name="lsAgreement" class="not-message" data-id="lsAgreement" required>
+                <label for="lsAgreement">Даю согласие на обработку персональных данных.</label>
+            </div>
+            <small class="error-for-end" data-id="lsAgreement">Выберите один вариант</small>
+            <input class="submit lotos_send_from" type="submit" value="Сформировать документ и отправить.">
         </div>
     </div>
 
 
-    <input class="submit lotos_send_from" type="submit" value="Submit">
+
 </form>
 
 <script>
@@ -362,8 +379,6 @@
         }
 
     })
-
-
 
     // config validat plugin
 
