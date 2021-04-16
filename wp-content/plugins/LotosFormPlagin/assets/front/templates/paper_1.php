@@ -15,7 +15,7 @@
                     <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsName" placeholder="Имя" required>
                 </div>
                 <div class="field">
-                    <input type="text" data-save class="ls-input" name="<?= $title ?>-patronymic" placeholder="Отчество">
+                    <input type="text" data-save class="ls-input" name="lsPatronymic" placeholder="Отчество">
                     <label> Не обязательно к заполнению</label>
                 </div>
             </div>
@@ -41,7 +41,7 @@
                 <div class="ls-row">
                     <div class="long-field">
                         <label>Hазвание выдавшего органа: </label>
-                        <textarea name="whereTake" data-save title="Обязательно к заполнению" required></textarea>
+                        <textarea name="lsWhereTake" data-save title="Обязательно к заполнению" required></textarea>
                     </div>
                     <div class="field">
                         <label> Дата выдачи: </label>
@@ -55,20 +55,20 @@
             <div class="address firstAddres">
                 <div class="city">
                     <label class="title">Город: </label>
-                    <input type="text" data-save name="first-city" title="Обязательно к заполнению" required>
+                    <input type="text" data-save name="lsFirstCity" title="Обязательно к заполнению" required>
                 </div>
                 <div class="street">
                     <label class="title">Улица: </label>
-                    <input type="text" data-save name="first-street" title="Обязательно к заполнению" required>
+                    <input type="text" data-save name="lsFirstStreet" title="Обязательно к заполнению" required>
                 </div>
                 <div class="house-flat">
                     <div class="house">
                         <label>Дом: </label>
-                        <input type="text" data-save name="first-house" title="Обязательно" required>
+                        <input type="text" data-save name="lsFirstHouse" title="Обязательно" required>
                     </div>
                     <div class="flat">
                         <label>Kвартира: </label>
-                        <input type="text" data-save name="first-flat" title="Обязательно" required>
+                        <input type="text" data-save name="lsFirstFlat" title="Обязательно" required>
                     </div>
                 </div>
             </div>
@@ -82,21 +82,21 @@
             <div class="address secondAddres">
                 <div class="city">
                     <label class="title">Город: </label>
-                    <input type="text" data-save name="second-city" title="Обязательно к заполнению" required>
+                    <input type="text" data-save name="lsSecondCity" title="Обязательно к заполнению" required>
 
                 </div>
                 <div class="street">
                     <label class="title">Улица: </label>
-                    <input type="text" data-save name="second-street" title="Обязательно к заполнению" required>
+                    <input type="text" data-save name="lsSecondStreet" title="Обязательно к заполнению" required>
                 </div>
                 <div class="house-flat">
                     <div class="house">
                         <label>Дом: </label>
-                        <input type="text" data-save name="second-house" title="Обязательно" required>
+                        <input type="text" data-save name="lsSecondHouse" title="Обязательно" required>
                     </div>
                     <div class="flat">
                         <label>Kвартира: </label>
-                        <input type="text" data-save name="second-flat" title="Обязательно" required>
+                        <input type="text" data-save name="lsSecondFlat" title="Обязательно" required>
                     </div>
                 </div>
             </div>
@@ -116,7 +116,7 @@
                 </div>
                 <div class="city">
                     <label>e-mail </label>
-                    <input type="email" data-save name="lsEmail" placeholder="mail@mail.ru" title="Обязательно к заполнению">
+                    <input type="email" data-save name="lsEmailUser" placeholder="mail@mail.ru" title="Обязательно к заполнению">
                 </div>
             </div>
 
@@ -140,7 +140,7 @@
                             <div class="inputs">
                                 <div class="local-variant">
                                     <label for="yes_1">Да</label>
-                                    <input type="checkbox" data-save name="yes_<?= $field['number'] ?>" data-id="field_<?= $field['number'] ?>">
+                                    <input type="checkbox" data-save name="yes_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
                                 </div>
                                 <div class="local-variant">
                                     <label for="no_1">Нет</label>
@@ -148,7 +148,7 @@
                                 </div>
                                 <div class="local-variant">
                                     <label for="think_1">Затрудняюсь ответить</label>
-                                    <input type="checkbox" data-save name="think_<?= $field['number'] ?>" data-id="field_<?= $field['number'] ?>">
+                                    <input type="checkbox" data-save name="think_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
                                 </div>
                             </div>
                         </div>
@@ -173,23 +173,21 @@
                 В заключении дополнительный информационный текст о...
             </div>
             <div class="end_message-cheked" data-variant-id="allFieldsIsTrue">
-                <input type="checkbox" name="allFieldsIsTrue" id="allFieldsIsTrue" data-save name="allFieldsIsTrue" class="not-message" data-id="allFieldsIsTrue" required>
+                <input type="checkbox" name="allFieldsIsTrue" data-id="allFieldsIsTrue" id="allFieldsIsTrue" data-save name="allFieldsIsTrue" class="not-message" data-id="allFieldsIsTrue" required>
                 <label for="allFieldsIsTrue">Все поля заполнены мною верно.</label>
             </div>
-            <small class="error-for-end" data-id="allFieldsIsTrue">Выберите один вариант</small>
+            <small class="error-for-end" data-id="allFieldsIsTrue">Обязательно для заполнения</small>
             <div class="end_message-agreement" data-variant-id="lsAgreement">
-                <input type="checkbox" name="lsAgreement" id="lsAgreement" data-save name="lsAgreement" class="not-message" data-id="lsAgreement" required>
+                <input type="checkbox" name="lsAgreement" data-id="lsAgreement" id="lsAgreement" data-save name="lsAgreement" class="not-message" data-id="lsAgreement" required>
                 <label for="lsAgreement">Даю согласие на обработку персональных данных.</label>
             </div>
-            <small class="error-for-end" data-id="lsAgreement">Выберите один вариант</small>
+            <small class="error-for-end" data-id="lsAgreement">Обязательно для заполнения</small>
             <input class="submit lotos_send_from" type="submit" value="Сформировать документ и отправить.">
+            <button class="g-recaptcha" data-sitekey="6Le3vqsaAAAAAOYwu25yQZXFrRGLQlt6oEJGFWwr" data-callback="onSubmit" style="display: none;">Отправить</button>
         </div>
     </div>
-
-
-
 </form>
-
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
 <script>
     let isError = false
 
@@ -262,14 +260,12 @@
 
         if (e.target.checked) {
             secondAddres.forEach(el => el.setAttribute('readonly', ''))
-
             createConnect()
             document.querySelector('.firstAddres').addEventListener('input', createConnect)
             document.querySelector('.firstAddres').addEventListener('change', createConnect)
             document.querySelector('.firstAddres').addEventListener('blur', createConnect)
 
         } else {
-
             secondAddres.forEach(el => el.removeAttribute('readonly'))
             document.querySelector('.firstAddres').removeEventListener('input', createConnect)
             document.querySelector('.firstAddres').removeEventListener('change', createConnect)
@@ -284,7 +280,7 @@
 
     // code for inputs from healthy list
 
-    const wrapperHealthyList = document.querySelector('.ls-healthyList__body')
+    const wrapperHealthyList = document.querySelector('.contract__form')
 
     const healthyList = document.querySelectorAll('.variants')
 
@@ -299,7 +295,7 @@
             const elName = el.name
             const dataId = el.dataset.id
             const wrapper = document.querySelector(`div[data-variant-id="${dataId}"]`)
-            const inputs = [...wrapper.querySelectorAll('input[type="checkbox"]')]
+            const inputs = [...wrapper ? wrapper.querySelectorAll('input[type="checkbox"]') || [el] : [el]]
             const errorMessage = document.querySelector(`small[data-id="${dataId}"]`)
 
             el.setAttribute('required', '')
@@ -313,11 +309,11 @@
                 }
                 if (isError) {
                     if (inputs.some(el => el.checked)) {
-                        errorMessage.classList.remove('error')
-                        wrapper.classList.remove('error')
+                        errorMessage instanceof Element && errorMessage.classList.remove('error')
+                        wrapper instanceof Element && wrapper.classList.remove('error')
                     } else {
-                        errorMessage.classList.add('error')
-                        wrapper.classList.add('error')
+                        errorMessage instanceof Element && errorMessage.classList.add('error')
+                        wrapper instanceof Element && wrapper.classList.add('error')
                     }
                 }
             })
@@ -337,7 +333,8 @@
         const el = e.target
         if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" && el.hasAttribute('data-save')) {
             if (el.type === 'checkbox') {
-                const inputs = document.querySelectorAll(`input[data-id="${el.dataset.id}"]`)
+                const inputs = document.querySelectorAll(`input[data-id="${el.dataset.id}"]`).length ?
+                    document.querySelectorAll(`input[data-id="${el.dataset.id}"]`) : [el]
                 inputs.forEach(input => {
                     if (input.name === el.name) {
                         localStorage.setItem(`ls-${input.name}`, input.checked ? 'yes' : 'notChecked')
@@ -356,10 +353,9 @@
     inputsForSave.forEach(input => {
         const value = localStorage.getItem(`ls-${input.name}`) || null
 
-        if (value && value !== 'notChecked') {
+        if (value && value !== 'notChecked' && input.id !== "theSame") {
 
             if (input.type === 'checkbox') {
-
                 const inputs = document.querySelectorAll(`input[data-id="${input.dataset.id}"]`)
                 inputs.forEach(el => {
                     if (input.name === el.name) {
@@ -369,27 +365,49 @@
                     }
                 })
                 input.checked = true
-                if (input.id === "theSame") {
-                    input.dispatchEvent(new Event('change'))
-                }
             } else {
-
                 input.value = value
             }
+        } else if (input.id === "theSame") {
+            console.log(444);
+            input.checked = value === 'notChecked' ? false : true
+            input.dispatchEvent(new Event('change'))
         }
 
     })
 
-    // config validat plugin
+    async function onSubmit(token) {
+
+        try {
+            const body = new FormData(document.querySelector('.contract__form'));
+            body.append('action', 'my_action');
+            const response = await fetch(ajax_obj.ajaxurl, {
+                method: 'POST',
+                body
+            });
+            const res = await response.json();
+        } catch (e) {
+            console.log(e)
+        }
+
+        grecaptcha.reset()
+    }
+
+
 
     $("#ls-form").validate({
+        submitHandler: function(form) {
+            document.querySelector(".g-recaptcha").click();
+        },
         errorPlacement: function(error, element) {
 
             const dataId = element.data("id") || null;
 
             if (dataId) {
-                document.querySelector(`small[data-id="${dataId}"]`).classList.add('error')
-                document.querySelector(`div[data-variant-id="${dataId}"]`).classList.add('error')
+                const message = document.querySelector(`small[data-id="${dataId}"]`)
+                const wrapper = document.querySelector(`div[data-variant-id="${dataId}"]`)
+                message instanceof Element && message.classList.add('error')
+                wrapper instanceof Element && wrapper.classList.add('error')
             }
 
             if (!isError) {
@@ -438,7 +456,7 @@
                 required: true,
                 lsPhoneValid: true,
             },
-            lsEmail: {
+            lsEmailUser: {
                 required: true,
                 email: true
             }

@@ -1,16 +1,16 @@
 <?php
 /*
-Plugin Name: Lotos form plagin
+Plugin Name: Lotos form plugin
 Plugin URI: https://alexander-pl.ru/
-Description: This plagin creates and sends contract
+Description: This plugin creates and sends contract
 Version: 1.0.0
 Author: Alexander Plotnikov
 Author URI: https://alexander-pl.ru/
 License: GPLv2 or later
-Text Domain: LotosFormPlagin
+Text Domain: LotosFormPlugin
 */
 
-require_once  realpath(__DIR__) . '/vendor/autoload.php';
+require_once  realpath(__DIR__. '/vendor/autoload.php') ;
 
 use \PhpOffice\PhpWord\TemplateProcessor;
 use \PHPMailer\PHPMailer\PHPMailer;
@@ -24,8 +24,7 @@ if (!function_exists('add_action')) {
 
 class CreateContract
 {
-    public $plagins = [];
-
+    public $plugins = [];
 
     public function register()
     {
@@ -45,31 +44,37 @@ class CreateContract
 
     function my_action()
     {
+      
 
-
+        $email_user = $_POST['lsEmailUser'];
         $title = $_POST['id-title'];
+
+   
         $agreement = new TemplateProcessor(__DIR__ . '/assets/papers/Agreement.docx');
-        $contract = new TemplateProcessor(__DIR__ . '/assets/papers/Contract.docx');
+        $contract = new TemplateProcessor(__DIR__ . '/assets/papers/Contract.docx'); 
 
         foreach ($_POST as $key => $value) {
 
-            $agreement->setValue(str_replace("{$title}-", '', $key), trim($value));
-
-            $contract->setValue(str_replace("{$title}-", '', $key), trim($value));
+            $agreement->setValue(str_replace("ls", '', $key), trim($value));
+            $contract->setValue(str_replace("ls", '', $key), trim($value));
         }
+ 
+        $agreementName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Соглашение.docx';
+        $contractName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Договор.docx';
 
-        $agreementName = __DIR__ . '/assets/papers/' . $_POST["{$title}-name"] . '_' . $_POST["{$title}-familia"] . '_' . $_POST["{$title}-data-born"] . '_' . 'Соглашение.docx';
-        $contractName = __DIR__ . '/assets/papers/' . $_POST["{$title}-name"] . '_' . $_POST["{$title}-familia"] . '_' . $_POST["{$title}-data-born"] . '_' . 'Договор.docx';
+
 
         $agreement->saveAs($agreementName);
-        $contract->saveAs($contractName);
+        $contract->saveAs($contractName); 
 
-        $attachments[] = $agreementName;
+      
+
+   /*      $attachments[] = $agreementName;
         $attachments[] = $contractName;
 
         $headers[] = 'Content-type: text/html; charset=utf-8'; // в виде массива
 
-        $mail = wp_mail($_POST['id-email'], 'Документы', 'Документы...', $headers, $attachments);
+        $mail = wp_mail($email_user, 'Документы', 'Документы...', $headers, $attachments);
 
         unlink($agreementName);
         unlink($contractName);
@@ -77,14 +82,14 @@ class CreateContract
         if ($mail) {
             echo json_encode(['result' => true]);
             die();
-        }
+        } */
 
-        /* try { 
+         try { 
 
-          echo json_encode(['result' => true]);
-        
+            $mail = new PHPMailer();
 
-            $mail = new PHPMailer(true);
+         /*    echo json_encode(['result' => true]);
+            die(); */
 
             $mail->CharSet = 'UTF-8';
 
@@ -104,7 +109,7 @@ class CreateContract
 
             $mail->setFrom('lotostoii@gmail.com', 'Alexander Plotnikov');
 
-            $mail->addAddress($_POST['id-email'], 'Alexander Plotnikov');
+            $mail->addAddress($email_user, 'Alexander Plotnikov');
 
             $mail->Subject = 'Отправка почты';
             $body = "<p>Документы...</p>";
@@ -114,22 +119,23 @@ class CreateContract
 
             $mail->addAttachment($agreementName);
             $mail->addAttachment($contractName);
-
+ 
             $mail->send();
 
             unlink($agreementName);
-            unlink($contractName);
+            unlink($contractName); 
 
             echo json_encode(['result' => true]);
+            die();
 
         } catch (Exception $e) {
             echo json_encode([
                 'result' => false,
-                'error' => $mail->ErrorInfo
+                'error' => $mail->ErrorInfo,        
             ]);
-        } */
+            die();
+        } 
 
-        /*   die(); */
     }
 
     function create_paper($atts)
@@ -142,8 +148,6 @@ class CreateContract
             ],
             $atts
         );
-
-        array_push($this->plagins, $params);
 
         extract($params);
 
@@ -180,6 +184,6 @@ class CreateContract
 
 
 if (class_exists('CreateContract')) {
-    $myPlagin = new CreateContract('Hello World!');
-    $myPlagin->register();
+    $myPlugin = new CreateContract('Hello World!');
+    $myPlugin->register();
 }
