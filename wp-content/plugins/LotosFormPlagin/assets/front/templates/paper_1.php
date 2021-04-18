@@ -1,5 +1,5 @@
 <form data-id-contract="<?= $title ?>" class="contract__form" id="ls-form">
-
+    <input type="hidden" name="to-email" value="<?= $email ?>">
     <input type="hidden" name="id-title" value="<?= $title ?>">
     <input type="hidden" name="id-email" value="<?= $email ?>">
 
@@ -154,14 +154,14 @@
                         </div>
                     <?php elseif ($field['type'] === "period") : ?>
                         <div class="ls-period">
-                            <input data-save type="text" name="period" placeholder="Мес.">
+                            <input data-save type="text" name="period" title="Только цифры" placeholder="Мес.">
                         </div>
                     <?php endif ?>
                 </div>
                 <small class="error-for-list" data-id="field_<?= $field['number'] ?>">Выберите один вариант</small>
                 <?php if (array_key_exists('add_info', $field)) : ?>
                     <div class="add-field">
-                        <textarea name="<?= $field['number'] ?>" placeholder="<?= $field['add_info'] ?>"></textarea>
+                        <textarea name="<?= $field['number'] ?>-text" placeholder="<?= $field['add_info'] ?>"></textarea>
                     </div>
                 <?php endif ?>
             <?php endforeach ?>
@@ -201,6 +201,7 @@
     // adding new hendler for valid date
 
     $.validator.addMethod("lsDate", function(value, element) {
+      
         if (/^\d{4}\-\d{2}\-\d{2}$/.test(value)) {
             return true
         } else {
@@ -208,6 +209,17 @@
         }
 
     }, "01.01.2000");
+
+
+    $.validator.addMethod("isPeriod", function(value, element) {
+        console.log(value, 'val');
+        if (/^\d{0,3}$/.test(value) || value === '') {
+            return true
+        } else {
+            return false
+        }
+
+    }, "Только цифры");
 
     // adding new hendler for valid phone
 
@@ -369,18 +381,30 @@
                 input.value = value
             }
         } else if (input.id === "theSame") {
-            console.log(444);
             input.checked = value === 'notChecked' ? false : true
             input.dispatchEvent(new Event('change'))
         }
 
     })
 
+    const listInputs = [...document.querySelectorAll('.variants > .inputs  input')]
+
+
     async function onSubmit(token) {
 
         try {
             const body = new FormData(document.querySelector('.contract__form'));
+
+            listInputs.forEach(input => {
+                if (!input.checked) {
+                    body.append(input.name, '')
+                } else {
+                    body.set(input.name, '+')
+                }
+            })
+
             body.append('action', 'my_action');
+
             const response = await fetch(ajax_obj.ajaxurl, {
                 method: 'POST',
                 body
@@ -392,7 +416,6 @@
 
         grecaptcha.reset()
     }
-
 
 
     $("#ls-form").validate({
@@ -441,6 +464,11 @@
                 minlength: 4,
                 maxlength: 4,
                 digits: true,
+            },
+            period: {
+               // required: true,
+                minlength: 0,
+                isPeriod: true,
             },
             lsNumber: {
                 required: true,

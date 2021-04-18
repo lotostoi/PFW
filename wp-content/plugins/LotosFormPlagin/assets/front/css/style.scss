@@ -13,7 +13,6 @@ input:read-only {
   padding: 0 10px;
 }
 
-
 .message-bottom.error {
   color: red;
 }
@@ -65,15 +64,15 @@ input:read-only {
   margin: 50px 0 45px 0;
 }
 
-.pnf > div > .ls-input[type='text'] {
+.pnf > div > .ls-input[type="text"] {
   width: 261px;
   box-sizing: border-box;
   color: #181818;
 }
-.pnf > div > .ls-input[type='text'].error {
+.pnf > div > .ls-input[type="text"].error {
   box-shadow: $error-shadow;
 }
-.pnf > div > .ls-input[type='text'].error:focus {
+.pnf > div > .ls-input[type="text"].error:focus {
   box-shadow: $error-shadow;
 }
 .pnf > .field > label {
@@ -354,6 +353,26 @@ input:read-only {
   }
 }
 
+.ls-period {
+  display: flex;
+  flex-direction: column;
+  & > input.error {
+    box-shadow: $error-shadow;
+  }
+  & > input.error:focus {
+    box-shadow: $error-shadow !important;
+  }
+  & > label {
+    display: flex;
+    margin: 8px 0 0 10px;
+  }
+  & > label.error {
+    display: flex;
+    margin: 8px 0 0 10px;
+    color: red;
+  }
+}
+
 .list-row.dark {
   background: #ffffff77 0% 0% no-repeat padding-box;
 }
@@ -370,6 +389,17 @@ input:read-only {
   margin: 16px 0 21px 0;
   & > textarea {
     padding: 1.125em 1.563em;
+  }
+  & > textarea.error {
+    box-shadow: $error-shadow;
+  }
+  & > textarea.error:focus {
+    box-shadow: $error-shadow !important;
+  }
+  & > label.error {
+    display: flex;
+    margin: 8px 0 0 10px;
+    color: red;
   }
 }
 

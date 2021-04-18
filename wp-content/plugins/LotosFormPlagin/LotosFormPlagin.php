@@ -10,7 +10,7 @@ License: GPLv2 or later
 Text Domain: LotosFormPlugin
 */
 
-require_once  realpath(__DIR__. '/vendor/autoload.php') ;
+require_once  realpath(__DIR__ . '/vendor/autoload.php');
 
 use \PhpOffice\PhpWord\TemplateProcessor;
 use \PHPMailer\PHPMailer\PHPMailer;
@@ -44,32 +44,38 @@ class CreateContract
 
     function my_action()
     {
-      
+
 
         $email_user = $_POST['lsEmailUser'];
         $title = $_POST['id-title'];
 
-   
+
         $agreement = new TemplateProcessor(__DIR__ . '/assets/papers/Agreement.docx');
-        $contract = new TemplateProcessor(__DIR__ . '/assets/papers/Contract.docx'); 
+        $contract = new TemplateProcessor(__DIR__ . '/assets/papers/Contract.docx');
+        $healthyList = new TemplateProcessor(__DIR__ . '/assets/papers/HealthyList.docx');
 
         foreach ($_POST as $key => $value) {
 
             $agreement->setValue(str_replace("ls", '', $key), trim($value));
             $contract->setValue(str_replace("ls", '', $key), trim($value));
+           /*  if (strpos($key, 'no_') || strpos($key, 'yes_') || strpos($key, 'think_')) { */
+                $healthyList->setValue(str_replace("ls", '', $key), trim($value));
+            /* } */
         }
- 
+
         $agreementName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Соглашение.docx';
         $contractName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Договор.docx';
+        $healthyListName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Лист-здоровья.docx';
 
 
 
         $agreement->saveAs($agreementName);
-        $contract->saveAs($contractName); 
+        $contract->saveAs($contractName);
+        $healthyList->saveAs($healthyListName);
 
-      
 
-   /*      $attachments[] = $agreementName;
+
+        /*      $attachments[] = $agreementName;
         $attachments[] = $contractName;
 
         $headers[] = 'Content-type: text/html; charset=utf-8'; // в виде массива
@@ -84,11 +90,11 @@ class CreateContract
             die();
         } */
 
-         try { 
+        try {
 
             $mail = new PHPMailer();
 
-         /*    echo json_encode(['result' => true]);
+            /*    echo json_encode(['result' => true]);
             die(); */
 
             $mail->CharSet = 'UTF-8';
@@ -119,23 +125,23 @@ class CreateContract
 
             $mail->addAttachment($agreementName);
             $mail->addAttachment($contractName);
- 
+            $mail->addAttachment($healthyListName);
+
             $mail->send();
 
             unlink($agreementName);
-            unlink($contractName); 
+            unlink($contractName);
+            unlink($contractName);
 
             echo json_encode(['result' => true]);
             die();
-
         } catch (Exception $e) {
             echo json_encode([
                 'result' => false,
-                'error' => $mail->ErrorInfo,        
+                'error' => $mail->ErrorInfo,
             ]);
             die();
-        } 
-
+        }
     }
 
     function create_paper($atts)
