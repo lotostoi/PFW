@@ -161,7 +161,7 @@
                 <small class="error-for-list" data-id="field_<?= $field['number'] ?>">Выберите один вариант</small>
                 <?php if (array_key_exists('add_info', $field)) : ?>
                     <div class="add-field">
-                        <textarea name="<?= $field['number'] ?>-text" placeholder="<?= $field['add_info'] ?>"></textarea>
+                        <textarea name="<?= $field['number'] ?>-text" data-save placeholder="<?= $field['add_info'] ?>"></textarea>
                     </div>
                 <?php endif ?>
             <?php endforeach ?>
