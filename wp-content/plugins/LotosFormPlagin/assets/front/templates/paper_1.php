@@ -1,3 +1,13 @@
+<div class="modalWindow">
+    <div class="modalWindow__body">
+        <p class="modalWindow__title">ДОКУМЕНТЫ УСПЕШНО СФОРМИРОВАНЫ</p>
+        <p class="modalWindow__text">Вам осталось прийти к нам в клинику и подписать документы. </p>
+        <p class="modalWindow__text"> Также, для ознакомления копия документов были отправлены Вам на почту.</p>
+        <button class="modalWindow__button">OK</button>
+    </div>
+</div>
+
+
 <form data-id-contract="<?= $title ?>" class="contract__form" id="ls-form">
     <input type="hidden" name="to-email" value="<?= $email ?>">
     <input type="hidden" name="id-title" value="<?= $title ?>">
@@ -182,7 +192,10 @@
                 <label for="lsAgreement">Даю согласие на обработку персональных данных.</label>
             </div>
             <small class="error-for-end" data-id="lsAgreement">Обязательно для заполнения</small>
-            <input class="submit lotos_send_from" type="submit" value="Сформировать документ и отправить.">
+            <button class="submit lotos_send_from" type="submit">
+                <span class="text_button">Сформировать документ и отправить.</span>
+                <div class="loader blocked"></div>
+            </button>
             <button class="g-recaptcha" data-sitekey="6Le3vqsaAAAAAOYwu25yQZXFrRGLQlt6oEJGFWwr" data-callback="onSubmit" style="display: none;">Отправить</button>
         </div>
     </div>
@@ -201,7 +214,7 @@
     // adding new hendler for valid date
 
     $.validator.addMethod("lsDate", function(value, element) {
-      
+
         if (/^\d{4}\-\d{2}\-\d{2}$/.test(value)) {
             return true
         } else {
@@ -389,8 +402,22 @@
 
     const listInputs = [...document.querySelectorAll('.variants > .inputs  input')]
 
+    document.querySelector('.modalWindow__button').addEventListener('click', () => {
+        document.querySelector('.modalWindow').classList.remove('on')
+        grecaptcha.reset()
+    })
+
 
     async function onSubmit(token) {
+
+        const button = document.querySelector('.lotos_send_from')
+        const buttonText = button.querySelector('span')
+        const buttonDiv = button.querySelector('div')
+
+        button.classList.add('blocked')
+        buttonText.classList.add('blocked')
+        buttonDiv.classList.remove('blocked')
+
 
         try {
             const body = new FormData(document.querySelector('.contract__form'));
@@ -410,9 +437,16 @@
                 body
             });
             const res = await response.json();
+
+            document.querySelector('.modalWindow').classList.add('on')
+
         } catch (e) {
             console.log(e)
         }
+
+        button.classList.remove('blocked')
+        buttonText.classList.remove('blocked')
+        buttonDiv.classList.add('blocked')
 
         grecaptcha.reset()
     }
@@ -466,7 +500,7 @@
                 digits: true,
             },
             period: {
-               // required: true,
+                // required: true,
                 minlength: 0,
                 isPeriod: true,
             },
