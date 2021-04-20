@@ -47,6 +47,7 @@ class CreateContract
 
 
         $email_user = $_POST['lsEmailUser'];
+        $email_owner = $_POST['to-email'];
         $title = $_POST['id-title'];
 
 
@@ -75,27 +76,31 @@ class CreateContract
 
 
 
-        /*      $attachments[] = $agreementName;
+        $attachments[] = $agreementName;
         $attachments[] = $contractName;
+        $attachments[] = $healthyListName;
 
         $headers[] = 'Content-type: text/html; charset=utf-8'; // в виде массива
+        $headers[] = 'Cc: От кого...';
 
         $mail = wp_mail($email_user, 'Документы', 'Документы...', $headers, $attachments);
+        $mail2 = wp_mail($email_owner, 'Документы', 'Документы...', $headers, $attachments);
 
         unlink($agreementName);
         unlink($contractName);
+        unlink($healthyListName);
 
-        if ($mail) {
+        if ($mail && $mail2) {
             echo json_encode(['result' => true]);
             die();
-        } */
+        } else {
+            echo json_encode(['result' => false]);
+            die();
+        }
 
-        try {
+/*         try {
 
             $mail = new PHPMailer();
-
-            /*    echo json_encode(['result' => true]);
-            die(); */
 
             $mail->CharSet = 'UTF-8';
 
@@ -131,7 +136,7 @@ class CreateContract
 
             unlink($agreementName);
             unlink($contractName);
-            unlink($contractName);
+            unlink($healthyListName);
 
             echo json_encode(['result' => true]);
             die();
@@ -141,7 +146,7 @@ class CreateContract
                 'error' => $mail->ErrorInfo,
             ]);
             die();
-        }
+        } */
     }
 
     function create_paper($atts)

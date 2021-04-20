@@ -417,7 +417,7 @@
         button.classList.add('blocked')
         buttonText.classList.add('blocked')
         buttonDiv.classList.remove('blocked')
-
+        button.setAttribute("disabled", "disabled");
 
         try {
             const body = new FormData(document.querySelector('.contract__form'));
@@ -447,6 +447,7 @@
         button.classList.remove('blocked')
         buttonText.classList.remove('blocked')
         buttonDiv.classList.add('blocked')
+        button.removeAttribute("disabled");
 
         grecaptcha.reset()
     }
