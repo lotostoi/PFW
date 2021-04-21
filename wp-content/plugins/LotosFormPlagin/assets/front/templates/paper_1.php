@@ -1,9 +1,20 @@
-<div class="modalWindow">
-    <div class="modalWindow__body">
-        <p class="modalWindow__title">ДОКУМЕНТЫ УСПЕШНО СФОРМИРОВАНЫ</p>
-        <p class="modalWindow__text">Вам осталось прийти к нам в клинику и подписать документы. </p>
-        <p class="modalWindow__text"> Также, для ознакомления копия документов были отправлены Вам на почту.</p>
-        <button class="modalWindow__button">OK</button>
+<div class="success">
+    <div class="success__body">
+        <p class="success__title">ДОКУМЕНТЫ УСПЕШНО СФОРМИРОВАНЫ</p>
+        <p class="success__text">Вам осталось прийти к нам в клинику и подписать документы. </p>
+        <p class="success__text"> Также, для ознакомления копия документов были отправлены Вам на почту.</p>
+        <button class="success__button">OK</button>
+    </div>
+</div>
+
+
+<div class="resError">
+    <div class="resError__body">
+        <p class="resError__title">ОШИБКА</p>
+        <p class="resError__text">Упс, что то пошло не так! </p>
+        <p class="resError__text"> Попробуйте повторить позже нажать кнопку Сформировать документ и отправить.</p>
+        <p class="resError__text"> Или позвоните по телефону...</p>
+        <button class="resError__button">OK</button>
     </div>
 </div>
 
@@ -19,10 +30,10 @@
 
             <div class="pnf">
                 <div class="field">
-                    <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsFamilia" placeholder="Фамилия" required>
+                    <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsFamilia" placeholder="Фамилия">
                 </div>
                 <div class="field">
-                    <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsName" placeholder="Имя" required>
+                    <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsName" placeholder="Имя">
                 </div>
                 <div class="field">
                     <input type="text" data-save class="ls-input" name="lsPatronymic" placeholder="Отчество">
@@ -36,15 +47,15 @@
                 <div class="ls-row">
                     <div class="field">
                         <label>Дата рождения:</label>
-                        <input type="date" data-save name="lsDataBorn" id="lsDataBorn" title="Обязательно">
+                        <input type="date" data-save name="lsDataBorn" min='1800-01-01' max='<?= date("Y") ?>-<?= date('m') ?>-<?= date("d") ?>' id="lsDataBorn" title="Заполнено не корректно">
                     </div>
                     <div class="field">
                         <label>Cерия:</label>
-                        <input type="text" data-save name="lsSeria" title="Обязательно к заполнению(0000)" placeholder="0000">
+                        <input type="text" data-save name="lsSeria" title="Обязательно к заполнению" placeholder="0000">
                     </div>
                     <div class="field">
                         <label>№</label>
-                        <input type="text" data-save name="lsNumber" title="Обязательно к заполнению(000000)" placeholder="000000">
+                        <input type="text" data-save name="lsNumber" title="Обязательно к заполнению" placeholder="000000">
                     </div>
                 </div>
 
@@ -55,7 +66,7 @@
                     </div>
                     <div class="field">
                         <label> Дата выдачи: </label>
-                        <input type="date" data-save id="lsDataTaking" name="lsDataTaking" title="Обязательно к заполнению">
+                        <input type="date" data-save min='1800-01-01' max='<?= date("Y") ?>-<?= date('m') ?>-<?= date("d") ?>' id="lsDataTaking" name="lsDataTaking" title="Заполнено не корректно">
                     </div>
                 </div>
             </div>
@@ -84,7 +95,7 @@
             </div>
             <div class="theSame">
                 <input type="checkbox" data-save name="the-same" id="theSame">
-                <label> Адрес совпадает с адресом регистрации </label>
+                <label for="theSame"> Адрес совпадает с адресом регистрации </label>
             </div>
 
             <p class="ls-title">Адрес по месту жительства</p>
@@ -149,26 +160,26 @@
                         <div class="variants">
                             <div class="inputs">
                                 <div class="local-variant">
-                                    <label for="yes_1">Да</label>
-                                    <input type="checkbox" data-save name="yes_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
+                                    <input type="checkbox" id="yes_<?= $field['number'] ?>" data-save name="y<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
+                                    <label for="yes_<?= $field['number'] ?>">Да</label>
                                 </div>
                                 <div class="local-variant">
-                                    <label for="no_1">Нет</label>
-                                    <input type="checkbox" data-save name="no_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>" required>
+                                    <input type="checkbox" id="no_<?= $field['number'] ?>" data-save name="n<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>" required>
+                                    <label for="no_<?= $field['number'] ?>">Нет</label>
                                 </div>
                                 <div class="local-variant">
-                                    <label for="think_1">Затрудняюсь ответить</label>
-                                    <input type="checkbox" data-save name="think_<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
+                                    <input type="checkbox" id="think_<?= $field['number'] ?>" data-save name="t<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
+                                    <label for="think_<?= $field['number'] ?>">Затрудняюсь ответить</label>
                                 </div>
                             </div>
                         </div>
                     <?php elseif ($field['type'] === "period") : ?>
                         <div class="ls-period">
-                            <input data-save type="text" name="period" title="Только цифры" placeholder="Мес.">
+                            <input data-save type="text" name="period" maxlength="3" title="Только цифры" placeholder="Нед.">
                         </div>
                     <?php endif ?>
                 </div>
-                <small class="error-for-list" data-id="field_<?= $field['number'] ?>">Выберите один вариант</small>
+                <small class="error-for-list" data-id="field_<?= $field['number'] ?>">Выберите один из вариантов</small>
                 <?php if (array_key_exists('add_info', $field)) : ?>
                     <div class="add-field">
                         <textarea name="<?= $field['number'] ?>-text" data-save placeholder="<?= $field['add_info'] ?>"></textarea>
@@ -185,13 +196,15 @@
             <div class="end_message-cheked" data-variant-id="allFieldsIsTrue">
                 <input type="checkbox" name="allFieldsIsTrue" data-id="allFieldsIsTrue" id="allFieldsIsTrue" data-save name="allFieldsIsTrue" class="not-message" data-id="allFieldsIsTrue" required>
                 <label for="allFieldsIsTrue">Все поля заполнены мною верно.</label>
+                <small class="error-for-end" data-id="allFieldsIsTrue">Обязательно для заполнения</small>
             </div>
-            <small class="error-for-end" data-id="allFieldsIsTrue">Обязательно для заполнения</small>
+
             <div class="end_message-agreement" data-variant-id="lsAgreement">
                 <input type="checkbox" name="lsAgreement" data-id="lsAgreement" id="lsAgreement" data-save name="lsAgreement" class="not-message" data-id="lsAgreement" required>
                 <label for="lsAgreement">Даю согласие на обработку персональных данных.</label>
+                <small class="error-for-end" data-id="lsAgreement">Обязательно для заполнения</small>
             </div>
-            <small class="error-for-end" data-id="lsAgreement">Обязательно для заполнения</small>
+
             <button class="submit lotos_send_from" type="submit">
                 <span class="text_button">Сформировать документ и отправить.</span>
                 <div class="loader blocked"></div>
@@ -214,7 +227,6 @@
     // adding new hendler for valid date
 
     $.validator.addMethod("lsDate", function(value, element) {
-
         if (/^\d{4}\-\d{2}\-\d{2}$/.test(value)) {
             return true
         } else {
@@ -347,12 +359,22 @@
 
     // saving inputs values
 
+
+    function clearForm() {
+        /*   for (let key in localStorage) {
+              if (key.includes('ls-')) {
+                  localStorage.removeItem(key)
+              }
+          } */
+        window.location.reload()
+    }
+
     const inputsForSave = [...document.querySelectorAll('[data-save]')]
 
 
     document.querySelector('.contract__form').addEventListener('change', addHandler)
     document.querySelector('.contract__form').addEventListener('input', addHandler)
-    document.querySelector('.contract__form').addEventListener('blur', addHandler)
+    document.querySelector('.contract__form').addEventListener('focusout', addHandler, true)
 
     function addHandler(e) {
         const el = e.target
@@ -394,7 +416,7 @@
                 input.value = value
             }
         } else if (input.id === "theSame") {
-            input.checked = value === 'notChecked' ? false : true
+            input.checked = value === 'notChecked' || value === null ? false : true
             input.dispatchEvent(new Event('change'))
         }
 
@@ -402,8 +424,15 @@
 
     const listInputs = [...document.querySelectorAll('.variants > .inputs  input')]
 
-    document.querySelector('.modalWindow__button').addEventListener('click', () => {
-        document.querySelector('.modalWindow').classList.remove('on')
+
+    // send form 
+
+    document.querySelector('.success__button').addEventListener('click', () => {
+        // document.querySelector('.success').classList.remove('on')
+        clearForm()
+    })
+    document.querySelector('.resError__button').addEventListener('click', () => {
+        document.querySelector('.resError').classList.remove('on')
         grecaptcha.reset()
     })
 
@@ -421,8 +450,17 @@
 
         try {
             const body = new FormData(document.querySelector('.contract__form'));
+            const addPhone = document.querySelector('input[name="lsAddPhone"]')
+            const periodBer = document.querySelector('input[name="period"]')
+            if (addPhone.value !== '') {
+                body.set(addPhone.name, `,  ${addPhone.value}`)
+            }
+            if (periodBer.name !== '') {
+                body.set(periodBer.name, `${periodBer.value} недель`)
+            }
 
             listInputs.forEach(input => {
+
                 if (!input.checked) {
                     body.append(input.name, '')
                 } else {
@@ -436,11 +474,18 @@
                 method: 'POST',
                 body
             });
-            const res = await response.json();
+            const {
+                result
+            } = await response.json();
 
-            document.querySelector('.modalWindow').classList.add('on')
+            if (result) {
+                document.querySelector('.success').classList.add('on')
+            } else {
+                document.querySelector('.resError').classList.add('on')
+            }
 
         } catch (e) {
+            document.querySelector('.resError').classList.add('on')
             console.log(e)
         }
 
@@ -452,12 +497,22 @@
         grecaptcha.reset()
     }
 
+    // config validation plugin
+
 
     $("#ls-form").validate({
+
         submitHandler: function(form) {
             document.querySelector(".g-recaptcha").click();
         },
+
         errorPlacement: function(error, element) {
+            console.log(element[0].value);
+            if (element[0].value === '') {
+                console.log(1);
+            } else {
+                console.log(2);
+            }
 
             const dataId = element.data("id") || null;
 
@@ -523,6 +578,30 @@
                 required: true,
                 email: true
             }
+        },
+        messages: {
+            lsSeria: {
+                required: "Обязательно к заполнению",
+                minlength: "Заполнено не корректно",
+                maxlength: "Заполнено не корректно"
+            },
+            lsNumber: {
+                required: "Обязательно к заполнению",
+                minlength: "Заполнено не корректно",
+                maxlength: "Заполнено не корректно"
+            },
+            lsEmailUser: {
+                required: "Обязательно к заполнению",
+                email: "Заполнено не корректно",
+            },
+            lsDataBorn: {
+                required: "Заполнено не корректно",
+                lsDate: "Заполнено не корректно",
+            },
+            lsDataTaking: {
+                required: "Заполнено не корректно",
+                lsDate: "Заполнено не корректно",
+            },
         }
     });
 

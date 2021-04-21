@@ -30,9 +30,8 @@ class CreateContract
     {
         function onMailError($wp_error)
         {
-            echo "<pre>";
-            print_r($wp_error);
-            echo "</pre>";
+            echo json_encode(['result' => false, 'error' => $wp_error]);
+            die();
         }
         add_action('wp_ajax_my_action',  [$this, 'my_action']);
         add_action('wp_ajax_nopriv_my_action', [$this, 'my_action']);
@@ -40,6 +39,7 @@ class CreateContract
         add_action('wp_enqueue_scripts', [$this, 'enqueue_front',]);
         add_shortcode('create_paper', [$this, 'create_paper']);
         add_action('wp_mail_failed', 'onMailError', 10, 1);
+        add_filter('wp_mail_from', [$this, 'wpb_sender_email']);
     }
 
     function my_action()
@@ -59,22 +59,16 @@ class CreateContract
 
             $agreement->setValue(str_replace("ls", '', $key), trim($value));
             $contract->setValue(str_replace("ls", '', $key), trim($value));
-           /*  if (strpos($key, 'no_') || strpos($key, 'yes_') || strpos($key, 'think_')) { */
-                $healthyList->setValue(str_replace("ls", '', $key), trim($value));
-            /* } */
+            $healthyList->setValue(str_replace("ls", '', $key), trim($value));
         }
 
         $agreementName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Соглашение.docx';
         $contractName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Договор.docx';
         $healthyListName = __DIR__ . '/assets/papers/' . $_POST["lsName"] . '_' . $_POST["lsFamilia"] . '_' . $_POST["lsDataBorn"] . '_' . 'Лист-здоровья.docx';
 
-
-
         $agreement->saveAs($agreementName);
         $contract->saveAs($contractName);
         $healthyList->saveAs($healthyListName);
-
-
 
         $attachments[] = $agreementName;
         $attachments[] = $contractName;
@@ -89,64 +83,12 @@ class CreateContract
         unlink($agreementName);
         unlink($contractName);
         unlink($healthyListName);
-
-        if ($mail && $mail2) {
-            echo json_encode(['result' => true]);
-            die();
-        } else {
-            echo json_encode(['result' => false]);
-            die();
-        }
-
-/*         try {
-
-            $mail = new PHPMailer();
-
-            $mail->CharSet = 'UTF-8';
-
-            $mail->isSMTP();
-
-            $mail->SMTPAuth = true;
-
-            $mail->SMTPDebug = 0;
-
-            $mail->Host = 'ssl://smtp.gmail.com';
-
-            $mail->Port = 465;
-
-            $mail->Username = 'lotostoii@gmail.com';
-
-            $mail->Password =  "EUDaawww1";
-
-            $mail->setFrom('lotostoii@gmail.com', 'Alexander Plotnikov');
-
-            $mail->addAddress($email_user, 'Alexander Plotnikov');
-
-            $mail->Subject = 'Отправка почты';
-            $body = "<p>Документы...</p>";
-            $body .= "<p>C уважением Александр Плотников...</p>";
-
-            $mail->msgHTML($body);
-
-            $mail->addAttachment($agreementName);
-            $mail->addAttachment($contractName);
-            $mail->addAttachment($healthyListName);
-
-            $mail->send();
-
-            unlink($agreementName);
-            unlink($contractName);
-            unlink($healthyListName);
-
-            echo json_encode(['result' => true]);
-            die();
-        } catch (Exception $e) {
-            echo json_encode([
-                'result' => false,
-                'error' => $mail->ErrorInfo,
-            ]);
-            die();
-        } */
+        echo json_encode(['result' => true]);
+        die();
+    }
+    function wpb_sender_email($original_email_address)
+    {
+        return "test@mail.ru";
     }
 
     function create_paper($atts)
