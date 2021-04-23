@@ -1,4 +1,13 @@
 $error-shadow: 1px 1px 6px #ee3333;
+
+input[type='checkbox'] {
+  cursor: pointer !important;
+}
+
+label {
+  cursor: pointer !important;
+}
+
 .loader,
 .loader:after {
   border-radius: 50%;
@@ -56,7 +65,7 @@ $error-shadow: 1px 1px 6px #ee3333;
   top: 0;
   justify-content: center;
   align-items: center;
-  background-color: #f3f3f3;
+  background-color: #f3f3f3d5;
   &__body {
     width: 100%;
     max-width: 950px;
@@ -361,6 +370,14 @@ input:read-only {
     color: #181818;
     opacity: 1;
   }
+  & > input {
+    box-shadow: none !important;
+    transform: scale(1.3);
+  }
+  & > input:checked {
+    box-shadow: none !important;
+    transform: scale(1.3);
+  }
 }
 
 .ls-margin {
@@ -443,7 +460,6 @@ input:read-only {
     color: #272727;
     opacity: 1;
     margin: 0 0 0 30px;
-    width: 45%;
   }
   & > .variants {
     align-items: center;
@@ -511,14 +527,15 @@ input:read-only {
 }
 .add-field {
   display: flex;
-  height: 52px;
+  height: 54px;
   margin: 16px 0 21px 0;
   & > textarea {
     padding: 15px 1.563em;
     display: flex;
-    height: 52px;
+    height: 54px;
     align-items: center;
-    overflow: hidden;
+    overflow: auto;
+    resize: none;
   }
   & > textarea.error {
     box-shadow: $error-shadow;
@@ -591,7 +608,7 @@ input:read-only {
     box-shadow: none;
     transform: scale(1.3);
   }
-/*   & > input[type='checkbox'].error {
+  /*   & > input[type='checkbox'].error {
     box-shadow: $error-shadow !important;
     background-color: red;
   }

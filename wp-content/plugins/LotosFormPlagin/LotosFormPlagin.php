@@ -13,9 +13,6 @@ Text Domain: LotosFormPlugin
 require_once  realpath(__DIR__ . '/vendor/autoload.php');
 
 use \PhpOffice\PhpWord\TemplateProcessor;
-use \PHPMailer\PHPMailer\PHPMailer;
-use \PHPMailer\PHPMailer\SMTP;
-use \PHPMailer\PHPMailer\Exception;
 
 
 if (!function_exists('add_action')) {
@@ -45,12 +42,15 @@ class CreateContract
     function my_action()
     {
 
+        $emailAddresses[] = $_POST['lsEmailUser'];
 
-        $email_user = $_POST['lsEmailUser'];
-        $email_owner = $_POST['to-email'];
-        $title = $_POST['id-title'];
+        foreach ($_POST as $key => $value) {
+            if (stristr($key, 'toEmail-')) {
+                $emailAddresses[] = $value;
+            }
+        }
 
-
+    
         $agreement = new TemplateProcessor(__DIR__ . '/assets/papers/Agreement.docx');
         $contract = new TemplateProcessor(__DIR__ . '/assets/papers/Contract.docx');
         $healthyList = new TemplateProcessor(__DIR__ . '/assets/papers/HealthyList.docx');
@@ -77,8 +77,10 @@ class CreateContract
         $headers[] = 'Content-type: text/html; charset=utf-8'; // в виде массива
         $headers[] = 'Cc: От кого...';
 
-        $mail = wp_mail($email_user, 'Документы', 'Документы...', $headers, $attachments);
-        $mail2 = wp_mail($email_owner, 'Документы', 'Документы...', $headers, $attachments);
+
+        foreach($emailAddresses as $value) {
+            wp_mail($value, 'Документы', 'Документы...', $headers, $attachments);
+        }
 
         unlink($agreementName);
         unlink($contractName);
@@ -93,20 +95,20 @@ class CreateContract
 
     function create_paper($atts)
     {
-        $params = shortcode_atts(
-            [
-                'title' => 'paper_1',
-                'email' => 'taset@mail.ru',
-                'fields' => include_once(plugin_dir_path(__FILE__) . "assets/front/data/fields.php")
-            ],
-            $atts
-        );
 
-        extract($params);
+        $emailAddresses = [];
+
+        foreach ($atts as $key => $value) {
+            if (stristr($key, 'email')) {
+                $emailAddresses[] = $value;
+            }
+        }
+
+        $fields = include_once(plugin_dir_path(__FILE__) . "assets/front/data/fields.php");
 
         ob_start();
 
-        include(plugin_dir_path(__FILE__) . "assets/front/templates/{$title}.php");
+        include(plugin_dir_path(__FILE__) . "assets/front/templates/paper_1.php");
 
         $output = ob_get_contents();
 

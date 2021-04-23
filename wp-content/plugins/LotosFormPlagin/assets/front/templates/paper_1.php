@@ -20,9 +20,10 @@
 
 
 <form data-id-contract="<?= $title ?>" class="contract__form" id="ls-form">
-    <input type="hidden" name="to-email" value="<?= $email ?>">
-    <input type="hidden" name="id-title" value="<?= $title ?>">
-    <input type="hidden" name="id-email" value="<?= $email ?>">
+
+    <?php foreach ($emailAddresses as $key => $value) : ?>
+        <input type="hidden" name="toEmail-<?= $key ?>" value="<?= $value ?>">
+    <?php endforeach ?>
 
     <div class="ls-fields">
         <div class="ls-fields__body">
@@ -449,9 +450,17 @@
         button.setAttribute("disabled", "disabled");
 
         try {
+
             const body = new FormData(document.querySelector('.contract__form'));
             const addPhone = document.querySelector('input[name="lsAddPhone"]')
             const periodBer = document.querySelector('input[name="period"]')
+            const dataBorn = document.querySelector('input[name="lsDataBorn"]')
+            const dataTaking = document.querySelector('input[name="lsDataTaking"]')
+
+
+            body.set(dataBorn.name, dataBorn.value.split('-').reverse().join('.'))
+            body.set(dataTaking.name, dataTaking.value.split('-').reverse().join('.'))
+
             if (addPhone.value !== '') {
                 body.set(addPhone.name, `,  ${addPhone.value}`)
             }
@@ -493,7 +502,6 @@
         buttonText.classList.remove('blocked')
         buttonDiv.classList.add('blocked')
         button.removeAttribute("disabled");
-
         grecaptcha.reset()
     }
 
