@@ -149,7 +149,7 @@
         <div class="ls-healthyList__body">
             <div class="list-title">
                 <p class="title">Лист здоровья</p>
-                <p class="description">Специалисты ООО «Aurora DentHouse» хотели бы как можно лучше провести Ваше лечение. Его успех в немалой степени зависит от состояния Вашего здоровья. Пожалуйста, ответьте на все вопросы полностью, выбрав ( ДА или НЕТ).</p>
+                <p class="description">Наши специалисты хотели бы как можно лучше провести Ваше лечение. Его успех в немалой степени зависит от состояния Вашего здоровья. Пожалуйста, ответьте на все вопросы полностью ( ДА, НЕТ или Затрудняюсь ответить).</p>
             </div>
             <?php foreach ($fields as $field) : ?>
                 <div class="list-row <?= $field['type'] === "field" || $field['type'] === "not-number" ? 'light' : ''  ?>" data-variant-id="field_<?= $field['number'] ?>">
