@@ -31,14 +31,13 @@
 
             <div class="pnf">
                 <div class="field">
-                    <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsFamilia" placeholder="Фамилия">
+                    <input type="text" data-upper-case data-save title="Обязательно к заполнению" class="ls-input" name="lsFamilia" placeholder="Фамилия">
                 </div>
                 <div class="field">
-                    <input type="text" data-save title="Обязательно к заполнению" class="ls-input" name="lsName" placeholder="Имя">
+                    <input type="text" data-upper-case data-save title="Обязательно к заполнению" class="ls-input" name="lsName" placeholder="Имя">
                 </div>
                 <div class="field">
-                    <input type="text" data-save class="ls-input" name="lsPatronymic" placeholder="Отчество">
-                    <label> Не обязательно к заполнению</label>
+                    <input type="text" data-upper-case data-save class="ls-input" name="lsPatronymic" placeholder="Отчество">
                 </div>
             </div>
 
@@ -52,11 +51,11 @@
                     </div>
                     <div class="field">
                         <label>Cерия:</label>
-                        <input type="text" data-save name="lsSeria" title="Обязательно к заполнению" placeholder="0000">
+                        <input type="text" data-save name="lsSeria" maxlength="4" minlength="4" title="Обязательно к заполнению" placeholder="0000">
                     </div>
                     <div class="field">
                         <label>№</label>
-                        <input type="text" data-save name="lsNumber" title="Обязательно к заполнению" placeholder="000000">
+                        <input type="text" data-save name="lsNumber" maxlength="6" minlength="6" title="Обязательно к заполнению" placeholder="000000">
                     </div>
                 </div>
 
@@ -77,11 +76,11 @@
             <div class="address firstAddres">
                 <div class="city">
                     <label class="title">Город: </label>
-                    <input type="text" data-save name="lsFirstCity" title="Обязательно к заполнению" required>
+                    <input type="text" data-upper-case data-save name="lsFirstCity" title="Обязательно к заполнению" required>
                 </div>
                 <div class="street">
                     <label class="title">Улица: </label>
-                    <input type="text" data-save name="lsFirstStreet" title="Обязательно к заполнению" required>
+                    <input type="text" data-upper-case data-save name="lsFirstStreet" title="Обязательно к заполнению" required>
                 </div>
                 <div class="house-flat">
                     <div class="house">
@@ -104,12 +103,12 @@
             <div class="address secondAddres">
                 <div class="city">
                     <label class="title">Город: </label>
-                    <input type="text" data-save name="lsSecondCity" title="Обязательно к заполнению" required>
+                    <input type="text" data-upper-case data-save name="lsSecondCity" title="Обязательно к заполнению" required>
 
                 </div>
                 <div class="street">
                     <label class="title">Улица: </label>
-                    <input type="text" data-save name="lsSecondStreet" title="Обязательно к заполнению" required>
+                    <input type="text" data-upper-case data-save name="lsSecondStreet" title="Обязательно к заполнению" required>
                 </div>
                 <div class="house-flat">
                     <div class="house">
@@ -137,7 +136,7 @@
                     <label> Не обязательно к заполнению</label>
                 </div>
                 <div class="city">
-                    <label>e-mail </label>
+                    <label>Укажите Ваш e-mail </label>
                     <input type="email" data-save name="lsEmailUser" placeholder="mail@mail.ru" title="Обязательно к заполнению">
                 </div>
             </div>
@@ -362,11 +361,11 @@
 
 
     function clearForm() {
-        /*   for (let key in localStorage) {
-              if (key.includes('ls-')) {
-                  localStorage.removeItem(key)
-              }
-          } */
+        for (let key in localStorage) {
+            if (key.includes('ls-')) {
+                localStorage.removeItem(key)
+            }
+        }
         window.location.reload()
     }
 
@@ -504,6 +503,21 @@
         button.removeAttribute("disabled");
         grecaptcha.reset()
     }
+
+
+    // to Upper-case first letter
+
+    const fieldsForUpperCase = document.querySelectorAll('input[data-upper-case]')
+    const firstLetterToUpper = (e) => {
+        let firstLetter = e.target.value.trim()[0]
+        if (!firstLetter) return
+        e.target.value = e.target.value.replace(firstLetter, firstLetter.toUpperCase())
+    }
+
+    fieldsForUpperCase.forEach(el => {
+        el.addEventListener('input', firstLetterToUpper)
+    })
+
 
     // config validation plugin
 
