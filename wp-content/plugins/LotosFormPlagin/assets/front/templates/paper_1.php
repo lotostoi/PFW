@@ -19,7 +19,7 @@
 </div>
 
 
-<form data-id-contract="<?= $title ?>" class="contract__form" id="ls-form">
+<form  class="contract__form" id="ls-form">
 
     <?php foreach ($emailAddresses as $key => $value) : ?>
         <input type="hidden" name="toEmail-<?= $key ?>" value="<?= $value ?>">
