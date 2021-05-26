@@ -243,7 +243,7 @@ input:read-only {
 }
 
 .pnf > div > .ls-input[type='text'] {
-  width: 261px;
+  width: 280px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: #181818;
@@ -297,7 +297,7 @@ input:read-only {
 }
 
 .contract__form .passport .ls-row > .field {
-  width: 261px;
+  width: 280px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -389,7 +389,7 @@ input:read-only {
 
 .address > .city,
 .address > .street {
-  width: 261px;
+  width: 280px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -440,7 +440,7 @@ input:read-only {
 }
 
 .address > .house-flat {
-  width: 261px;
+  width: 280px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;

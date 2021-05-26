@@ -30,6 +30,10 @@ class CreateContract
             echo json_encode(['result' => false, 'error' => $wp_error]);
             die();
         }
+        function wpse27856_set_content_type()
+        {
+            return "text/html";
+        }
         add_action('wp_ajax_my_action',  [$this, 'my_action']);
         add_action('wp_ajax_nopriv_my_action', [$this, 'my_action']);
         add_action('admin_enqueue_scripts', [$this, 'enqueue_admin']);
@@ -37,20 +41,11 @@ class CreateContract
         add_shortcode('create_paper', [$this, 'create_paper']);
         add_action('wp_mail_failed', 'onMailError', 10, 1);
         add_filter('wp_mail_from', [$this, 'wpb_sender_email']);
+        add_filter('wp_mail_content_type', 'wpse27856_set_content_type');
     }
 
     function my_action()
     {
-
-        $emailAddresses[] = $_POST['lsEmailUser'];
-
-        foreach ($_POST as $key => $value) {
-            if (stristr($key, 'toEmail-')) {
-                $emailAddresses[] = $value;
-            }
-        }
-
-    
         $agreement = new TemplateProcessor(__DIR__ . '/assets/papers/Agreement.docx');
         $contract = new TemplateProcessor(__DIR__ . '/assets/papers/Contract.docx');
         $healthyList = new TemplateProcessor(__DIR__ . '/assets/papers/HealthyList.docx');
@@ -77,10 +72,40 @@ class CreateContract
         $headers[] = 'Content-type: text/html; charset=utf-8'; // в виде массива
         $headers[] = 'Cc: От кого...';
 
+        $userAddres = $_POST['lsEmailUser'];
+        $adminAddres = $_POST['toEmail'];
 
-        foreach($emailAddresses as $value) {
-            wp_mail($value, 'Документы', 'Документы...', $headers, $attachments);
-        }
+        $titleUser = 'Документы для приёма в клинику Aurora DentHouse.';
+        $titleAdmin = 'Для администратора. Документы онлайн с сайта.';
+
+        $fullname = $_POST["lsPatronymic"] ?
+            $_POST["lsFamilia"] . ' ' . $_POST["lsName"] . ' ' . $_POST["lsPatronymic"] :
+            $_POST["lsFamilia"] . ' ' . $_POST["lsName"];
+
+        $bodyUser = "<p>{$fullname}, благодарим Вас за обращение в семейную стоматологическую клинику «Aurora DentHouse»</p>";
+        $bodyUser .= "<p>На нашем сайте Вы заполнили документы, которые будут готовы к Вашему приезду в клинику.</p>";
+        $bodyUser .= "<p>Вы можете ознакомится с ними в прикрепленных файлах к письму.</p>";
+        $bodyUser .= "<br/>";
+        $bodyUser .= '<p>С уважением "AuroraDH"</p>';
+        $bodyUser .= "<br/>";
+        $bodyUser .= "<br/>";
+        $bodyUser .= "<hr/>";
+        $bodyUser .= '<p>Телефоны:</p>';
+        $bodyUser .= '<p>+7 902 557 10 01</p>';
+        $bodyUser .= '<p>+7 (4232) 571 001</p>';
+        $bodyUser .= '<p>Адрес:</p>';
+        $bodyUser .= '<p>г. Владивосток, ул. Авроровская, 17.</p>';
+
+        $bodyAdmin = '<p>На сайте были сформированы документы.</p>';
+        $bodyAdmin .= "<br/>";
+        $bodyAdmin .= "<br/>";
+        $bodyAdmin .= '<p>Ответ на вопрос откуда узнали:</p>';
+        $bodyAdmin .= '<p style="font-style: italic;">' . $_POST['isAnswer'] . '</p>';
+
+
+        wp_mail($userAddres, $titleUser, $bodyUser, $headers, $attachments);
+        wp_mail($adminAddres, $titleAdmin, $bodyAdmin,  $headers, $attachments);
+
 
         unlink($agreementName);
         unlink($contractName);
@@ -90,19 +115,14 @@ class CreateContract
     }
     function wpb_sender_email($original_email_address)
     {
-        return "test@mail.ru";
+        return  "test@mail.ru";
     }
 
     function create_paper($atts)
     {
 
-        $emailAddresses = [];
+        $emailAddresses = $atts['email'];;
 
-        foreach ($atts as $key => $value) {
-            if (stristr($key, 'email')) {
-                $emailAddresses[] = $value;
-            }
-        }
 
         $fields = include_once(plugin_dir_path(__FILE__) . "assets/front/data/fields.php");
 

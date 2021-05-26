@@ -19,11 +19,11 @@
 </div>
 
 
-<form  class="contract__form" id="ls-form">
+<form class="contract__form" id="ls-form">
 
-    <?php foreach ($emailAddresses as $key => $value) : ?>
-        <input type="hidden" name="toEmail-<?= $key ?>" value="<?= $value ?>">
-    <?php endforeach ?>
+
+    <input type="hidden" name="toEmail" value="<?= $emailAddresses ?>">
+
 
     <div class="ls-fields">
         <div class="ls-fields__body">
@@ -188,6 +188,7 @@
             <?php endforeach ?>
         </div>
     </div>
+    <input type="text" name = "isAnswer">
     <div class="end-form">
         <div class="end-form__body">
             <div class="end_message">
@@ -428,8 +429,8 @@
     // send form 
 
     document.querySelector('.success__button').addEventListener('click', () => {
-        // document.querySelector('.success').classList.remove('on')
-        clearForm()
+        document.querySelector('.success').classList.remove('on')
+        //  clearForm()
     })
     document.querySelector('.resError__button').addEventListener('click', () => {
         document.querySelector('.resError').classList.remove('on')

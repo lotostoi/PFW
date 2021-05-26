@@ -197,8 +197,11 @@ input:read-only {
   margin: 50px 0 45px 0;
 }
 
+.pnf > div {
+}
+
 .pnf > div > .ls-input[type='text'] {
-  width: 261px;
+  width: 280px;
   box-sizing: border-box;
   color: #181818;
 }
@@ -232,7 +235,7 @@ input:read-only {
   justify-content: space-between;
   margin-bottom: 45px;
   & > .field {
-    width: 261px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     & > label {
@@ -293,7 +296,7 @@ input:read-only {
   justify-content: space-between;
   & > .city,
   & > .street {
-    width: 261px;
+    width: 280px;
     display: flex;
     flex-direction: column;
     & > label.title {
@@ -322,7 +325,7 @@ input:read-only {
     }
   }
   & > .house-flat {
-    width: 261px;
+    width: 280px;
     display: flex;
     justify-content: space-between;
     & > .house,
