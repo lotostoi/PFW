@@ -100,7 +100,7 @@ class CreateContract
         $bodyAdmin .= "<br/>";
         $bodyAdmin .= "<br/>";
         $bodyAdmin .= '<p>Ответ на вопрос откуда узнали:</p>';
-        $bodyAdmin .= '<p style="font-style: italic;">' . $_POST['isAnswer'] . '</p>';
+        $bodyAdmin .= '<p style="font-style: italic;">' . $_POST['last-question'] . '</p>';
 
 
         wp_mail($userAddres, $titleUser, $bodyUser, $headers, $attachments);

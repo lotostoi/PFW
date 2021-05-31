@@ -133,7 +133,6 @@
                 <div class="city">
                     <label>Доп. телефон </label>
                     <input type="text" data-save id="lsAddPhone" name="lsAddPhone" title="+7(999) 999-9999" placeholder="+7(___) ___-____">
-                    <label> Не обязательно к заполнению</label>
                 </div>
                 <div class="city">
                     <label>Укажите Ваш e-mail </label>
@@ -167,10 +166,12 @@
                                     <input type="checkbox" id="no_<?= $field['number'] ?>" data-save name="n<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>" required>
                                     <label for="no_<?= $field['number'] ?>">Нет</label>
                                 </div>
-                                <div class="local-variant">
-                                    <input type="checkbox" id="think_<?= $field['number'] ?>" data-save name="t<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
-                                    <label for="think_<?= $field['number'] ?>">Затрудняюсь ответить</label>
-                                </div>
+                                <?php if (!array_key_exists('hideThinking', $field)) : ?>
+                                    <div class="local-variant">
+                                        <input type="checkbox" id="think_<?= $field['number'] ?>" data-save name="t<?= $field['number'] ?>" class="not-message" data-id="field_<?= $field['number'] ?>">
+                                        <label for="think_<?= $field['number'] ?>">Затрудняюсь ответить</label>
+                                    </div>
+                                <?php endif ?>
                             </div>
                         </div>
                     <?php elseif ($field['type'] === "period") : ?>
@@ -181,19 +182,23 @@
                 </div>
                 <small class="error-for-list" data-id="field_<?= $field['number'] ?>">Выберите один из вариантов</small>
                 <?php if (array_key_exists('add_info', $field)) : ?>
-                    <div class="add-field">
+                    <div class="add-field <?= array_key_exists('addClass', $field) ? $field['addClass'] : '' ?>">
                         <textarea name="<?= $field['number'] ?>-text" data-save placeholder="<?= $field['add_info'] ?>"></textarea>
                     </div>
                 <?php endif ?>
             <?php endforeach ?>
         </div>
     </div>
-    <input type="text" name = "isAnswer">
+
     <div class="end-form">
         <div class="end-form__body">
             <div class="end_message">
-                В заключении дополнительный информационный текст о...
+                Для нас важно знать, откуда Вы о нас узнали
             </div>
+            <div class="last-question">
+                <textarea name="last-question" data-save placeholder="Напишите пожалуйста в этом поле."></textarea>
+            </div>
+
             <div class="end_message-cheked" data-variant-id="allFieldsIsTrue">
                 <input type="checkbox" name="allFieldsIsTrue" data-id="allFieldsIsTrue" id="allFieldsIsTrue" data-save name="allFieldsIsTrue" class="not-message" data-id="allFieldsIsTrue" required>
                 <label for="allFieldsIsTrue">Все поля заполнены мною верно.</label>
