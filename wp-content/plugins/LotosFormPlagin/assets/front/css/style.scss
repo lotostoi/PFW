@@ -1,3 +1,12 @@
+@mixin mq($width, $type: min) {
+  @if $type==max {
+    $width: $width - 1px;
+  }
+  @media only screen and (#{$type}-width: $width) {
+    @content;
+  }
+}
+
 $error-shadow: 1px 1px 6px #ee3333;
 
 input[type='checkbox'] {
@@ -610,18 +619,9 @@ input:read-only {
     opacity: 0.78;
   }
   & > input[type='checkbox'] {
-    // margin-left: 190px;
     box-shadow: none;
     transform: scale(1.3);
   }
-  /*   & > input[type='checkbox'].error {
-    box-shadow: $error-shadow !important;
-    background-color: red;
-  }
-  & > input[type='checkbox'].error:focus {
-    box-shadow: $error-shadow !important;
-    background-color: red;
-  } */
 }
 
 .lotos_send_from {
@@ -698,5 +698,133 @@ input:read-only {
     align-items: center;
     overflow: auto;
     resize: none;
+  }
+}
+
+@include mq(880, max) {
+  .ls-title {
+    text-align: center;
+    padding: 0 20px;
+  }
+  .pnf {
+    flex-direction: column;
+    align-items: center;
+  }
+  .pnf > div {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  .pnf > div > .ls-input[type='text'] {
+    width: 100%;
+    max-width: 600px;
+    min-width: 280px;
+
+    margin: 15px 20px 0 20px;
+  }
+
+  .contract__form .passport .ls-row {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+  }
+  .contract__form .passport .ls-row > .field,
+  .contract__form .passport .ls-row > .long-field {
+    width: 100%;
+    max-width: 600px;
+    min-width: 280px;
+    margin: 15px 0 0 0;
+    display: flex;
+  }
+
+  .address {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-direction: column;
+    & > .city,
+    & > .street {
+      width: 100%;
+      max-width: 600px;
+      min-width: 280px;
+      margin: 15px 0 0 0;
+      display: flex;
+    }
+    & > .house-flat {
+      width: 100%;
+      max-width: 600px;
+      min-width: 280px;
+      margin: 15px 0 0 0;
+      display: flex;
+    }
+  }
+  .theSame {
+    justify-content: center;
+  }
+}
+
+@include mq(700, max) {
+  .list-row {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    & > .title {
+      display: flex;
+      font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 18px/23px
+        var(--unnamed-font-family-segoe-ui);
+      letter-spacing: var(--unnamed-character-spacing-0);
+      color: #272727;
+      opacity: 1;
+      margin: 0 20px 20px 20px;
+    }
+    & > .variants {
+      margin: 0 20px 20px 20px;
+      & > div.inputs {
+        width: auto;
+      }
+    }
+  }
+
+  .error-for-list {
+    width: 100%;
+    display: none;
+    text-align: center;
+    color: red;
+    -webkit-box-pack: end;
+    -ms-flex-pack: end;
+    justify-content: center;
+    padding: 0 10px;
+  }
+
+  .add-field > textarea {
+    padding: 5px 1.563em;
+  }
+  .last-question {
+    width: 100%;
+    max-width: 654px;
+    margin: 0 auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+  }
+  .end_message-cheked,
+  .end_message-agreement {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 0 10px;
+  }
+  .end_message-cheked > label,
+  .end_message-agreement > label {
+    margin-top: 10px;
+  }
+  .lotos_send_from {
+    width: 90%;
+    margin-left: 10px;
+    margin-right: 10px;
   }
 }
