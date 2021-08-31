@@ -243,7 +243,7 @@ input:read-only {
 }
 
 .pnf > div > .ls-input[type='text'] {
-  width: 280px;
+  width: 295px;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
   color: #181818;
@@ -297,7 +297,7 @@ input:read-only {
 }
 
 .contract__form .passport .ls-row > .field {
-  width: 280px;
+  width: 295px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -390,7 +390,7 @@ input:read-only {
 
 .address > .city,
 .address > .street {
-  width: 280px;
+  width: 295px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -441,7 +441,7 @@ input:read-only {
 }
 
 .address > .house-flat {
-  width: 280px;
+  width: 295px;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -593,6 +593,12 @@ input:read-only {
   margin-bottom: 35px;
 }
 
+@media only screen and (max-width: 699px) {
+  .list-title {
+    padding: 30px 18px;
+  }
+}
+
 .list-title > .title {
   font: var(--unnamed-font-style-normal) normal normal 24px/32px var(--unnamed-font-family-segoe-ui);
   letter-spacing: var(--unnamed-character-spacing-0);
@@ -694,6 +700,12 @@ input:read-only {
   color: #2e0e75;
   opacity: 1;
   margin: 0 15px;
+}
+
+@media only screen and (max-width: 699px) {
+  .list-row > .variants > div.inputs > .local-variant > label {
+    font: var(--unnamed-font-style-normal) normal var(--unnamed-font-weight-300) 12px/24px var(--unnamed-font-family-segoe-ui);
+  }
 }
 
 .list-row > .variants > div.inputs > .local-variant > input {
@@ -1001,7 +1013,7 @@ input:read-only {
   .pnf > div > .ls-input[type='text'] {
     width: 100%;
     max-width: 600px;
-    min-width: 280px;
+    min-width: 295px;
     margin: 15px 20px 0 20px;
   }
   .contract__form .passport .ls-row {
@@ -1021,7 +1033,7 @@ input:read-only {
   .contract__form .passport .ls-row > .long-field {
     width: 100%;
     max-width: 600px;
-    min-width: 280px;
+    min-width: 295px;
     margin: 15px 0 0 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1044,7 +1056,7 @@ input:read-only {
   .address > .street {
     width: 100%;
     max-width: 600px;
-    min-width: 280px;
+    min-width: 295px;
     margin: 15px 0 0 0;
     display: -webkit-box;
     display: -ms-flexbox;
@@ -1053,7 +1065,7 @@ input:read-only {
   .address > .house-flat {
     width: 100%;
     max-width: 600px;
-    min-width: 280px;
+    min-width: 295px;
     margin: 15px 0 0 0;
     display: -webkit-box;
     display: -ms-flexbox;

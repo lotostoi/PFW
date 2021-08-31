@@ -2,7 +2,7 @@
     <div class="success__body">
         <p class="success__title">ДОКУМЕНТЫ УСПЕШНО СФОРМИРОВАНЫ</p>
         <p class="success__text">Вам осталось прийти к нам в клинику и подписать документы. </p>
-        <p class="success__text"> Также, для ознакомления копия документов были отправлены Вам на почту.</p>
+        <p class="success__text"> Также, для ознакомления копия документов были отправлены Вам на почту: <span id="insert-email"></span></p>
         <button class="success__button">OK</button>
     </div>
 </div>
@@ -23,6 +23,15 @@
 
 
     <input type="hidden" name="toEmail" value="<?= $emailAddresses ?>">
+    <?php if ($emailAddresses1) : ?>
+        <input type="hidden" name="toEmail1" value="<?= $emailAddresses1 ?>">
+    <?php endif ?>
+    <?php if ($emailAddresses2) : ?>
+        <input type="hidden" name="toEmail2" value="<?= $emailAddresses3 ?>">
+    <?php endif ?>
+    <?php if ($emailAddresses3) : ?>
+        <input type="hidden" name="toEmail3" value="<?= $emailAddresses3 ?>">
+    <?php endif ?>
 
 
     <div class="ls-fields">
@@ -136,7 +145,7 @@
                 </div>
                 <div class="city">
                     <label>Укажите Ваш e-mail </label>
-                    <input type="email" data-save name="lsEmailUser" placeholder="mail@mail.ru" title="Обязательно к заполнению">
+                    <input  id ="user-email" type="email" data-save name="lsEmailUser" placeholder="mail@mail.ru" title="Обязательно к заполнению">
                 </div>
             </div>
 
@@ -382,8 +391,17 @@
     document.querySelector('.contract__form').addEventListener('input', addHandler)
     document.querySelector('.contract__form').addEventListener('focusout', addHandler, true)
 
+    if ( localStorage.getItem('ls-lsEmailUser') ) {
+        console.log(document.getElementById('user-email').value);
+        document.getElementById('insert-email').innerHTML = `${localStorage.getItem('ls-lsEmailUser')}`;
+    }
+
     function addHandler(e) {
         const el = e.target
+        if (el.id==='user-email') {
+            document.getElementById('insert-email').innerHTML = `${el.value}`;
+        }
+
         if (el.tagName === "INPUT" || el.tagName === "TEXTAREA" && el.hasAttribute('data-save')) {
             if (el.type === 'checkbox') {
                 const inputs = document.querySelectorAll(`input[data-id="${el.dataset.id}"]`).length ?
@@ -435,7 +453,7 @@
 
     document.querySelector('.success__button').addEventListener('click', () => {
         document.querySelector('.success').classList.remove('on')
-        //  clearForm()
+        clearForm()
     })
     document.querySelector('.resError__button').addEventListener('click', () => {
         document.querySelector('.resError').classList.remove('on')

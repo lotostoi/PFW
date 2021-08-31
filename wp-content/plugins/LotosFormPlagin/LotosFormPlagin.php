@@ -3,13 +3,13 @@
 Plugin Name: Lotos form plugin
 Plugin URI: https://alexander-pl.ru/
 Description: This plugin creates and sends contract
-Version: 1.0.0
+Version: 2.0.0
 Author: Alexander Plotnikov
 Author URI: https://alexander-pl.ru/
 License: GPLv2 or later
 Text Domain: LotosFormPlugin
 */
-
+error_reporting(0);
 require_once  realpath(__DIR__ . '/vendor/autoload.php');
 
 use \PhpOffice\PhpWord\TemplateProcessor;
@@ -74,6 +74,9 @@ class CreateContract
 
         $userAddres = $_POST['lsEmailUser'];
         $adminAddres = $_POST['toEmail'];
+        $adminAddres1 = $_POST['toEmail1'];
+        $adminAddres2 = $_POST['toEmail2'];
+        $adminAddres3 = $_POST['toEmail3'];
 
         $titleUser = 'Документы для приёма в клинику Aurora DentHouse.';
         $titleAdmin = 'Для администратора. Документы онлайн с сайта.';
@@ -106,6 +109,15 @@ class CreateContract
         wp_mail($userAddres, $titleUser, $bodyUser, $headers, $attachments);
         wp_mail($adminAddres, $titleAdmin, $bodyAdmin,  $headers, $attachments);
 
+        if ($adminAddres1) {
+            wp_mail($adminAddres1, $titleAdmin, $bodyAdmin,  $headers, $attachments);
+        } 
+        if ($adminAddres2) {
+            wp_mail($adminAddres2, $titleAdmin, $bodyAdmin,  $headers, $attachments);
+        } 
+        if ($adminAddres3) {
+            wp_mail($adminAddres3, $titleAdmin, $bodyAdmin,  $headers, $attachments);
+        } 
 
         unlink($agreementName);
         unlink($contractName);
@@ -121,7 +133,10 @@ class CreateContract
     function create_paper($atts)
     {
 
-        $emailAddresses = $atts['email'];;
+        $emailAddresses = $atts['email'];
+        $emailAddresses1 = $atts['email1'];
+        $emailAddresses2 = $atts['email2'];
+        $emailAddresses3 = $atts['email3'];
 
 
         $fields = include_once(plugin_dir_path(__FILE__) . "assets/front/data/fields.php");
